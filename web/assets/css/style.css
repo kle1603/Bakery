@@ -1,0 +1,273 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #fff;
+    --secondary-color: #b5ed3d;
+    --background-color: #04704e;
+    --button-color: #b5ed3d;
+    --text-color: #4e5358;
+    --text-color-2: #fff;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Lora", serif;
+    /* font-family: "Syne", sans-serif; */
+    font-size: 1.6rem;
+    background: var(--primary-color);
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+input,
+select,
+textarea,
+button {
+    font-size: inherit;
+    font-family: inherit;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+/* ==================== Common ==================== */
+/* .container {
+    width: 1140px;
+    max-width: calc(100% - 48px);
+    margin-left: auto;
+    margin-right: auto;
+} */
+
+.btn {
+    --height: 44px;
+    min-width: 104px;
+    background: var(--button-color);
+    border-radius: 60px;
+    font-weight: 600;
+    line-height: var(--height);
+    font-size: 1.8rem;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--text-color-2);
+}
+/* ==================== Header ==================== */
+/* .header {
+    background: var(--secondary-color);
+}
+
+.navbar {
+    height: 116px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__menu-list {
+    display: flex;
+}
+
+.navbar__menu-item {
+    padding: 21px;
+    font-size: 1.8rem;
+    line-height: 1.75;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.navbar__menu-item:hover {
+    text-decoration: underline;
+}
+
+.navbar__button-login {
+    padding: 30px;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 1.75;
+    text-align: center;
+    text-transform: capitalize;
+    color: #191b1d;
+} */
+/* ==================== Sign-in ==================== */
+.signin__inner {
+    height: 100vh;
+    display: flex;
+}
+
+/* ==================== Sign-in-left ==================== */
+.signin__inner-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--background-color);
+}
+
+.signin-left-title {
+    padding-top: 20px;
+    position: relative;
+    max-width: 500px;
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 1.24;
+    color: var(--text-color-2);
+}
+
+.signin-left-title::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    width: 170px;
+    height: 4px;
+    background: var(--secondary-color);
+    border-radius: 12px;
+}
+
+.signin-left-desc {
+    margin-top: 20px;
+    max-width: 500px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.67;
+    color: var(--text-color-2);
+}
+
+/* ==================== Sign-in-right ==================== */
+.signin__inner-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e0eae5;
+}
+
+.signin__form {
+    width: 430px;
+    background: var(--text-color-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 20px 90px rgba(25, 27, 29, 0.1);
+    border-radius: 12px;
+}
+
+.signin__heading {
+    padding-top: 30px;
+    font-family: "Syne";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 1.36;
+    text-align: center;
+    color: #191b1d;
+}
+
+.signin__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text-color-2);
+    border: 1px solid rgba(25, 27, 29, 0.15);
+    border-radius: 25px;
+    color: var(--text-color);
+    transition: all ease 0.3s;
+}
+
+.signin__link:hover {
+    background: #c6e6dc;
+}
+
+.link-content {
+    padding-left: 8px;
+    font-size: 1.6rem;
+    line-height: 1.75;
+}
+
+.signin__link:first-child {
+    padding: 12px 80px;
+    margin-top: 30px;
+}
+
+.signin__link:not(:first-child) {
+    padding: 10px 80px;
+    margin-top: 12px;
+}
+
+.signin__option {
+    padding-top: 20px;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    color: var(--text-color);
+}
+
+.signin__input {
+    padding-top: 20px;
+}
+
+.section-input {
+    outline: none;
+    border: none;
+}
+
+.signin__username,
+.signin__password {
+    width: 370px;
+    height: 60px;
+    padding-left: 20px;
+    background: var(--text-color-2);
+    border: 1px solid rgba(25, 27, 29, 0.15);
+    border-radius: 30px;
+    font-size: 1.8rem;
+    line-height: 1.67;
+    color: var(--text-color);
+}
+
+.signin__password {
+    margin-top: 12px;
+}
+
+.signin__forget {
+    padding-top: 12px;
+    width: 370px;
+    text-align: right;
+}
+
+.signin__forget-link {
+    font-size: 1.8rem;
+    line-height: 1.67;
+    color: var(--text-color);
+}
+
+.signin__button {
+    outline: none;
+    border: none;
+    --height: 60px;
+    margin-top: 20px;
+    min-width: 370px;
+    cursor: pointer;
+}
+
+.signin__signup {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-size: 1.8rem;
+    line-height: 1.67;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.signin__signup-link {
+    font-weight: 600;
+    color: #191b1d;
+}
