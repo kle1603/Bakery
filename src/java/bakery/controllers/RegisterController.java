@@ -38,13 +38,16 @@ public class RegisterController extends HttpServlet {
             if (account.checkDuplicate(username, "USERNAME")) {
                 request.setAttribute("DUPLICATED", "Username is already taken");
                 error = true;
+            } else if (account.checkDuplicate(email, "EMAIL")) {
+                request.setAttribute("DUPLICATED", "Email is already taken");
+                error = true;
             }
 
             if (!error) {
                 checkInsert = account.registerAccount(username, email, password);
 
                 if (checkInsert) {
-                    if (Email.sendEmail(email, "Hello", "Bye")) {
+                    if (Email.sendEmail(email, "Have a nice day", Email.createEmailContent(username, email))) {
                         url = SUCCESS;
                     }
                 }

@@ -15,5 +15,8 @@
         <h1>Home</h1>
         <a href="register.jsp">Register</a>
         <a href="login.jsp">Login</a>
+        <form action="MainController" method="POST">
+            <input type="submit" name="action" value="Product"/>
+        </form>
     </body>
 </html>

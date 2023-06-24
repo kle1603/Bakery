@@ -19,23 +19,29 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 
     private static final String WELCOME_PAGE = "index.jsp";
-    
+
     private static final String REGISTER = "Register";
     private static final String REGISTER_CONTROLLER = "RegisterController";
-    
+
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
-    
+
     private static final String REGISTER_PAGE = "RegisterPage";
-    private static final String REGISTER_PAGE_VIEW= "register.jsp";
+    private static final String REGISTER_PAGE_VIEW = "register.jsp";
+
+    private static final String GOOGLE = "Google";
+    private static final String GOOGLE_CONTROLLER = "GoogleController";
     
+    private static final String PRODUCT = "Product";
+    private static final String PRODUCT_CONTROLLER = "ProductController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = WELCOME_PAGE;
         try {
             String action = request.getParameter("action");
-            switch  (action) {
+            switch (action) {
                 case REGISTER: ;
                     url = REGISTER_CONTROLLER;
                     break;
@@ -44,6 +50,12 @@ public class MainController extends HttpServlet {
                     break;
                 case REGISTER_PAGE: ;
                     url = REGISTER_PAGE_VIEW;
+                    break;
+                case GOOGLE: ;
+                    url = GOOGLE_CONTROLLER;
+                    break;
+                case PRODUCT: ;
+                    url = PRODUCT_CONTROLLER;
                     break;
                 default:
                     url = WELCOME_PAGE;

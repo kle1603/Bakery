@@ -9,7 +9,7 @@ package bakery.dto;
  *
  * @author kle
  */
-public class BreadDTO {
+public class BreadDTO extends ImageDTO {
     private int breadId;
     private BreadTypeDTO breadType;
     private String breadName;

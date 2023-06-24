@@ -1,0 +1,198 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #fff;
+    --secondary-color: #b5ed3d;
+    --background-color: #04704e;
+    --background-color-2: #e0eae5;
+    --button-color: #b5ed3d;
+    --text-color: #032e32;
+    --text-color-2: #ffffff;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.6rem;
+    background: var(--primary-color);
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+input,
+select,
+textarea,
+button {
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    outline: none;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+/* ==================== Common ==================== */
+.btn {
+    --height: 60px;
+    min-width: 100%;
+    background: var(--button-color);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: var(--height);
+    color: var(--text-color);
+}
+
+.signup__inner {
+    display: flex;
+    height: 100vh;
+}
+
+/* ==================== Sign Up Left ==================== */
+.signup-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color);
+}
+
+.signup-left__heading {
+    position: relative;
+    padding-top: 20px;
+    max-width: 470px;
+    font-weight: 800;
+    font-size: 4.2rem;
+    line-height: 1.24;
+    color: var(--text-color-2);
+}
+
+.signup-left__heading::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    width: 170px;
+    height: 4px;
+    background: var(--secondary-color);
+    border-radius: 12px;
+}
+
+.signup-left__desc {
+    margin-top: 20px;
+    max-width: 410px;
+    font-size: 1.8rem;
+    line-height: 1.67;
+    color: var(--text-color-2);
+}
+
+/* ==================== Sign Up Right ==================== */
+.signup-right {
+    width: 50%;
+    background: var(--background-color-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-right__form {
+    padding: 38px 28px;
+    width: 470px;
+    background: var(--primary-color);
+    border-radius: 12px;
+}
+
+.signup-right__heading {
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    color: var(--text-color);
+}
+
+.section-input {
+    padding-left: 17px;
+    margin-top: 17px;
+    margin-bottom: 28px;
+    width: 100%;
+    height: 62px;
+    border: 1px solid #d4dddd;
+    border-radius: 6px;
+}
+
+.signup-right__break {
+    position: relative;
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    color: #4f5a5a;
+}
+
+.signup-right__break::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 172px;
+    height: 1px;
+    background: #d4dddd;
+}
+
+.signup-right__break::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 172px;
+    height: 1px;
+    background: #d4dddd;
+}
+
+.signup-right__link {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup__link {
+    width: 255px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d4dddd;
+    border-radius: 6px;
+}
+
+.link-content {
+    padding: 11px 0 11px 13px;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    color: #4f5a5a;
+}
+
+.signup-left__signup {
+    margin-top: 18px;
+    font-size: 1.6;
+    line-height: 1.75;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.signup-left__signup-link {
+    font-weight: 600;
+    font-size: 1.6;
+    line-height: 1.74;
+    color: #032e32;
+}
