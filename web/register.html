@@ -90,7 +90,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Syne:wght@700&display=swap"
             rel="stylesheet"
         />
 
@@ -116,9 +116,16 @@
                         action="MainController"
                         method="POST"
                     >
-                        <h2 class="signup-right__heading">
-                            Email address or phone number
-                        </h2>
+                        <h2 class="signup-right__heading">Sign Up</h2>
+                        <div>
+                            <input
+                                class="section-input signup__username"
+                                type="text"
+                                name="username"
+                                required=""
+                                placeholder="Username"
+                            />
+                        </div>
                         <div>
                             <input
                                 class="section-input signup__username"
@@ -128,7 +135,6 @@
                                 placeholder="Email address or phone number"
                             />
                         </div>
-                        <h2 class="signup-right__heading">Password</h2>
                         <div>
                             <input
                                 class="section-input signup__username"
@@ -138,7 +144,6 @@
                                 placeholder="Password"
                             />
                         </div>
-                        <h2 class="signup-right__heading">Confirm Password</h2>
                         <div>
                             <input
                                 class="section-input signup__username"
@@ -171,7 +176,7 @@
                                 class="signup-left__signup-link"
                                 href="./login.html"
                             >
-                                Login</a
+                                Sign in</a
                             >
                         </p>
                     </form>
