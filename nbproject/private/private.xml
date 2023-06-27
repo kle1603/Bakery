@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/dao/AccountDAO.java</file>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/web/product.jsp</file>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/web/index.jsp</file>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/controllers/ProductController.java</file>
+            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/utils/Google.java</file>
+            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/controllers/RegisterController.java</file>
+            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/web/login.jsp</file>
+            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/web/register.jsp</file>
             <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/controllers/MainController.java</file>
+            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/controllers/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

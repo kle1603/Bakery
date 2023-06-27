@@ -22,49 +22,36 @@ import javax.servlet.http.HttpSession;
  * @author Kle
  */
 public class ProductController extends HttpServlet {
-
+    
     private static final String ERROR = "product.jsp";
     private static final String SUCCESS = "product.jsp";
-    private static final int PRODUCTS_PER_PAGE = 9;
-
+    private static final int PRODUCTS_PER_PAGE = 12;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        String search = request.getParameter("search");
+        String page = request.getParameter("page");
         try {
-            HttpSession session = request.getSession();
-            Integer page = (Integer) session.getAttribute("page");
-
-            if (page == null || request.getParameter("page") == null) {
-                page = 1;
-            } else {
-                page = Integer.parseInt(request.getParameter("page"));
+            if (page == null) {
+                page = "1";
             }
-
-            // Lấy tổng số sản phẩm
-            AccountDAO accountDAO = new AccountDAO();
-            int totalProducts = accountDAO.getTotalProducts();
-
-            int totalPages = (int) Math.ceil((double) totalProducts / PRODUCTS_PER_PAGE);
-            int pageNumber = Math.min(page, totalPages);
-//            int pageNumber = page;
-            // Mặc định endIndex là 9
-            int numberOfProductPerPage = PRODUCTS_PER_PAGE;
-
-            // Thực hiện xử lý logic để lấy danh sách sản phẩm
-            List<BreadDTO> breadList = accountDAO.getListProduct(pageNumber, numberOfProductPerPage);
+            
+            AccountDAO dao = new AccountDAO();
+            List<BreadDTO> breadList = dao.getListProduct(Integer.parseInt(page), PRODUCTS_PER_PAGE, search);
+            int totalProducts = dao.totalProducts;
+            
             if (!breadList.isEmpty()) {
                 request.setAttribute("BREAD_LIST", breadList);
-                request.setAttribute("TOTAL_PAGES", totalPages);
-                request.setAttribute("CURRENT_PAGE", pageNumber);
                 request.setAttribute("PRODUCTS_PER_PAGE", PRODUCTS_PER_PAGE);
+                request.setAttribute("TOTAL_PRODUCT", totalProducts);
                 url = SUCCESS;
             } else {
                 request.setAttribute("MESSAGE", "No products found.");
             }
-
-            // Lưu giá trị số lần bấm vào session
-            session.setAttribute("page", page);
+            
+            request.setAttribute("page", page);
         } catch (Exception e) {
             log("Error at ProductController: " + e.toString());
         } finally {

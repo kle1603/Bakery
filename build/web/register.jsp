@@ -1,24 +1,120 @@
-<%-- 
-    Document   : register
-    Created on : Jun 15, 2023, 10:38:37 PM
-    Author     : kle
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register Page</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bakery's Sign Up</title>
+
+        <!-- Embed Reset -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+
+        <!-- Embed Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Syne:wght@700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Embed Fonts -->
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+        <link
+            href="https://fonts.cdnfonts.com/css/roobert?styles=49579,49577,49581"
+            rel="stylesheet"
+        />
+
+        <!-- Embed Style -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        Create new user:
-        <form action="MainController" method="POST">
-            User Name<input type="text" name="username" value="" required=""/>
-            </br>Email<input type="text" name="email" value="" required=""/>
-            </br>Password<input type="password" name="password" value="" required=""/>
-            </br><input type="submit" name="action" value="Register"/>
-            <input type="reset" value="Reset"/>
-        </form>
+        <main class="signup">
+            <div class="signup__inner">
+                <section class="signup-left">
+                    <div class="signup-left__inner">
+                        <h1 class="signup-left__heading">
+                            Welcome to Kle's Bakery
+                        </h1>
+                        <p class="signup-left__desc">
+                            Sign up to enjoy your time
+                        </p>
+                    </div>
+                </section>
+                <section class="signup-right">
+                    <form
+                        class="signup-right__form"
+                        action="MainController"
+                        method="POST"
+                    >
+                        <a class="out" href="index.jsp"
+                            ><img src="./assets/icons/x.svg" alt=""
+                        /></a>
+                        <h2 class="signup-right__heading">Sign Up</h2>
+                        <div>
+                            <input
+                                class="section-input signup__username"
+                                type="text"
+                                name="username"
+                                required=""
+                                placeholder="Username"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                class="section-input signup__username"
+                                type="text"
+                                name="email"
+                                required=""
+                                placeholder="Email address"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                class="section-input signup__username"
+                                type="password"
+                                name="password"
+                                required=""
+                                placeholder="Password"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="hidden"
+                                name="action"
+                                value="Register"
+                            />
+                            <button
+                                type="submit"
+                                class="signup__button btn-sign"
+                            >
+                                Sign up
+                            </button>
+                        </div>
+                        <p class="signup-right__break">OR</p>
+                        <div class="signup-right__link">
+                            <a
+                                href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&redirect_uri=http://localhost:8084/Bakery/MainController?action=Google&response_type=code&client_id=285783151877-hvs57dvtmal99elb2gnpfcavh89mealc.apps.googleusercontent.com&approval_prompt=force"
+                                class="signup__link"
+                            >
+                                <img
+                                    src="./assets/icons/google.svg"
+                                    alt=""
+                                    class="google-img"
+                                />
+                                <p class="link-content">Continue with Google</p>
+                            </a>
+                        </div>
+                        <p class="signup-left__signup">
+                            Have account?
+                            <a
+                                class="signup-left__signup-link"
+                                href="login.jsp"
+                            >
+                                Sign in</a
+                            >
+                        </p>
+                    </form>
+                </section>
+            </div>
+        </main>
     </body>
 </html>

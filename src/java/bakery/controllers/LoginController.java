@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 
     private static final String LOGIN_PAGE="login.jsp";
-    private static final String ADMIN_PAGE="admin.jsp";
-    private static final String USER_PAGE="user.jsp";
+    private static final String ADMIN_PAGE="index.jsp";
+    private static final String USER_PAGE="index.jsp";
     private static final String US="US";
     private static final String AD="AD";
 
@@ -34,16 +34,17 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = LOGIN_PAGE;
         try {
-            String  username = request.getParameter("username");
-            String  password = request.getParameter("password");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
             AccountDAO dao = new AccountDAO();
             AccountDTO accountUser= dao.checkLogin(username, password);
+            
             if(accountUser == null){
                 request.setAttribute("ERROR", "Incorrect userID or password");
             }else {
                 RoleDTO role = accountUser.getRole();
                 HttpSession session = request.getSession();
-                System.out.println(role.getRoleId());
+                
                 if(role.getRoleId().trim().equals("AD")){
                     url= ADMIN_PAGE;
                     session.setAttribute("LOGIN_USER", accountUser);

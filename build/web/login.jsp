@@ -3,85 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Bakery's Login</title>
-
-        <!-- Embed Favicon -->
-        <link
-            rel="apple-touch-icon"
-            sizes="57x57"
-            href="./assets/favicon/apple-icon-57x57.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="60x60"
-            href="./assets/favicon/apple-icon-60x60.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="72x72"
-            href="./assets/favicon/apple-icon-72x72.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="76x76"
-            href="./assets/favicon/apple-icon-76x76.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="114x114"
-            href="./assets/favicon/apple-icon-114x114.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="120x120"
-            href="./assets/favicon/apple-icon-120x120.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="144x144"
-            href="./assets/favicon/apple-icon-144x144.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="152x152"
-            href="./assets/favicon/apple-icon-152x152.png"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="./assets/favicon/apple-icon-180x180.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="192x192"
-            href="./assets/favicon/android-icon-192x192.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="./assets/favicon/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="96x96"
-            href="./assets/favicon/favicon-96x96.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="./assets/favicon/favicon-16x16.png"
-        />
-        <link rel="manifest" href="./assets/favicon/manifest.json" />
-        <meta name="msapplication-TileColor" content="#ffffff" />
-        <meta
-            name="msapplication-TileImage"
-            content="./assets/favicon/ms-icon-144x144.png"
-        />
-        <meta name="theme-color" content="#ffffff" />
+        <title>Bakery's Sign In</title>
 
         <!-- Embed Reset -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
@@ -90,116 +12,96 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Lora:wght@400;600;700&family=Syne:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Syne:wght@700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Embed Fonts -->
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+        <link
+            href="https://fonts.cdnfonts.com/css/roobert?styles=49579,49577,49581"
             rel="stylesheet"
         />
 
         <!-- Embed Style -->
-        <link rel="stylesheet" href="./assets/css/login.css" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        <!-- Main Right-->
-        <section class="signin">
-            <div class="container">
-                <div class="signin__inner">
-                    <div class="signin__inner-left">
-                        <div class="signin-left-content">
-                            <h1 class="signin-left-title">
-                                Welcome back to Kle's Bakery
-                            </h1>
-                            <p class="signin-left-desc">
-                                Log In to buy something new and enjoy your time
-                            </p>
-                        </div>
+        <main class="signup">
+            <div class="signup__inner">
+                <section class="signup-left">
+                    <div class="signup-left__inner">
+                        <h1 class="signup-left__heading">
+                            Welcome to Kle's Bakery
+                        </h1>
+                        <p class="signup-left__desc">
+                            Sign in to enjoy your time
+                        </p>
                     </div>
-                    <div class="signin__inner-right">
-                        <form
-                            class="signin__form"
-                            action="MainController"
-                            method="POST"
-                        >
-                            <h1 class="signin__heading">Sign In</h1>
-                            <div class="signin__social">
-                                <a href="" class="signin__link">
-                                    <img
-                                        src="./assets/icons/facebook.svg"
-                                        alt=""
-                                        class="facebook-img"
-                                    />
-                                    <p class="link-content">
-                                        Continue with Facebook
-                                    </p>
-                                </a>
-                                <a
-                                    href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&redirect_uri=http://localhost:8084/Bakery/MainController?action=Google&response_type=code&client_id=285783151877-hvs57dvtmal99elb2gnpfcavh89mealc.apps.googleusercontent.com&approval_prompt=force"
-                                    class="signin__link"
-                                >
-                                    
-                                    <img
-                                        src="./assets/icons/google.svg"
-                                        alt=""
-                                        class="google-img"
-                                    />
-                                    <p class="link-content">
-                                        Continue with Google
-                                    </p>
-                                </a>
-                                <a href="" class="signin__link">
-                                    <img
-                                        src="./assets/icons/apple.svg"
-                                        alt=""
-                                        class="apple-img"
-                                    />
-                                    <p class="link-content">
-                                        Continue with Apple
-                                    </p>
-                                </a>
-                            </div>
-                            <p class="signin__option">OR</p>
-                            <div class="signin__input">
-                                <div>
-                                    <input
-                                        class="section-input signin__username"
-                                        type="text"
-                                        name="username"
-                                        required=""
-                                        placeholder="Username"
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        class="section-input signin__password"
-                                        type="password"
-                                        name="password"
-                                        required=""
-                                        placeholder="Password"
-                                    />
-                                </div>
-                            </div>
-                            <div class="signin__forget">
-                                <a class="signin__forget-link" href=""
-                                    >Forgot password?</a
-                                >
-                            </div>
+                </section>
+                <section class="signup-right">
+                    <form
+                        class="signup-right__form"
+                        action="MainController"
+                        method="POST"
+                    >
+                        <a class="out" href="index.jsp"
+                            ><img src="./assets/icons/x.svg" alt=""
+                        /></a>
+                        <h2 class="signup-right__heading">Sign In</h2>
+                        <div>
                             <input
-                                type="submit"
-                                name="action"
-                                value="Sign In"
-                                class="signin__button btn"
+                                class="section-input signup__username"
+                                type="text"
+                                name="username"
+                                required=""
+                                placeholder="Username"
                             />
-                            <p class="signin__signup">
-                                Don't a have account?
-                                <a
-                                    class="signin__signup-link"
-                                    href="./register.html"
-                                >
-                                    Sign Up</a
-                                >
-                            </p>
-                        </form>
-                    </div>
-                </div>
+                        </div>
+                        <div>
+                            <input
+                                class="section-input signup__username"
+                                type="password"
+                                name="password"
+                                required=""
+                                placeholder="Password"
+                            />
+                        </div>
+                        <div>
+                            <input type="hidden" name="action" value="Login" />
+                            <button
+                                type="submit"
+                                class="signup__button btn-sign"
+                            >
+                                Sign in
+                            </button>
+                        </div>
+                        <p class="signup-right__break">OR</p>
+                        <div class="signup-right__link">
+                            <a
+                                href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&redirect_uri=http://localhost:8084/Bakery/MainController?action=Google&response_type=code&client_id=285783151877-hvs57dvtmal99elb2gnpfcavh89mealc.apps.googleusercontent.com&approval_prompt=force"
+                                class="signup__link"
+                            >
+                                <img
+                                    src="./assets/icons/google.svg"
+                                    alt=""
+                                    class="google-img"
+                                />
+                                <p class="link-content">Continue with Google</p>
+                            </a>
+                        </div>
+                        <p class="signup-left__signup">
+                            Don't have account?
+                            <a
+                                class="signup-left__signup-link"
+                                href="register.jsp"
+                            >
+                                Sign up</a
+                            >
+                        </p>
+                    </form>
+                </section>
             </div>
-        </section>
+        </main>
     </body>
 </html>

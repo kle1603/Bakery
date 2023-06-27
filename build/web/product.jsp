@@ -1,105 +1,296 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page contentType="text/html;charset=UTF-8" language="java"%>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ page
+contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title>Product List</title>
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Product</title>
 
-            th, td {
-                padding: 8px;
-                text-align: left;
-                border-bottom: 1px solid #ddd;
-            }
+        <!-- Embed Reset -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
 
-            .pagination {
-                margin-top: 20px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        <!-- Embed Fonts -->
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+        <link
+            href="https://fonts.cdnfonts.com/css/roobert?styles=49579,49577,49581"
+            rel="stylesheet"
+        />
 
-            .pagination a, .pagination strong {
-                display: inline-block;
-                padding: 8px 12px;
-                margin-right: 5px;
-                text-decoration: none;
-                color: #333;
-                background-color: #fff;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                transition: background-color 0.3s;
-            }
-
-            .pagination a:hover {
-                background-color: #f4f4f4;
-            }
-        </style>
+        <!-- Embed Style -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        <h1>Product List</h1>
+        <c:import url="./header.jsp" />
 
-        <c:if test="${not empty BREAD_LIST}">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Units in Stock</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Bread Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="bread" items="${BREAD_LIST}">
-                        <tr>
-                            <td>${bread.breadId}</td>
-                            <td>${bread.breadName}</td>
-                            <td>${bread.unitsInStock}</td>
-                            <td>${bread.description}</td>
-                            <td><img src="${bread.imageUrl}" alt="Product Image" height="50"></td>
-                            <td>${bread.breadType}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+        <!-- Main -->
+        <main>
+            <div class="product">
+                <div class="container">
+                    <div class="product__inner">
+                        <h2 class="product__heading">Find Your Products</h2>
 
-            <c:if test="${not empty BREAD_LIST}">
-                <!-- Hiển thị danh sách sản phẩm -->
+                        <div class="product__option">
+                            <div class="product__search">
+                                <form
+                                    class="product__search-form"
+                                    action="MainController"
+                                    method="GET"
+                                >
+                                    <input
+                                        class="product__search-text"
+                                        type="text"
+                                        name="search"
+                                        placeholder="Search"
+                                        value="${param.search}"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="action"
+                                        value="Product"
+                                    />
+                                    <button
+                                        class="product__search-submit"
+                                        type="submit"
+                                    >
+                                        <img
+                                            class="product__search-image"
+                                            src="./assets/icons/search.svg"
+                                            alt=""
+                                        />
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="product__filter">
+                                <figure class="product__filter-img">
+                                    <img
+                                        src="./assets/icons/filter.svg"
+                                        alt=""
+                                    />
+                                </figure>
+                                <p class="product__filter-content">
+                                    All Filters
+                                </p>
+                            </div>
+                        </div>
+                        <div class="product__list">
+                            <!-- Item 1 -->
+                            <c:if test="${not empty BREAD_LIST}">
+                                <c:forEach var="bread" items="${BREAD_LIST}">
+                                    <article class="product__item">
+                                        <figure
+                                            class="product__item-img-wrapper"
+                                        >
+                                            <a href="#!">
+                                                <img
+                                                    class="product__item-img"
+                                                    src="${bread.imageUrl}"
+                                                    alt=""
+                                                />
+                                            </a>
+                                            <p class="product__item-img-title">
+                                                Add to Cart
+                                            </p>
+                                        </figure>
+                                        <section class="product__item-content">
+                                            <div class="row">
+                                                <a
+                                                    href="#!"
+                                                    class="product__item-category"
+                                                >
+                                                    ${bread.breadType.breadTypeName}
+                                                </a>
+                                                <img
+                                                    class="product__item-heart"
+                                                    src="./assets/icons/heart.svg"
+                                                    alt=""
+                                                />
+                                            </div>
+                                            <a
+                                                href="#!"
+                                                class="product__item-title line-clamp"
+                                            >
+                                                ${bread.breadName}
+                                            </a>
+                                            <div class="row">
+                                                <div class="product__item-rate">
+                                                    <img
+                                                        src="./assets/icons/star.svg"
+                                                        alt=""
+                                                        class="product__item-star"
+                                                    />
+                                                    <p
+                                                        class="product__item-rating"
+                                                    >
+                                                        5.0 (18)
+                                                    </p>
+                                                </div>
+                                                <strong
+                                                    class="product__item-price"
+                                                    >$${bread.price}</strong
+                                                >
+                                            </div>
+                                        </section>
+                                    </article>
+                                </c:forEach>
+                            </c:if>
+                        </div>
+                        <!-- <button class="btn--secondary product__btn">
+                            Load More
+                        </button> -->
+                        <c:if
+                            test="${requestScope.TOTAL_PRODUCT > requestScope.PRODUCTS_PER_PAGE}"
+                        >
+                            <div class="pagination">
+                                <c:if test="${requestScope.page > 1}">
+                                    <c:url
+                                        var="prevPaging"
+                                        value="MainController"
+                                    >
+                                        <c:param
+                                            name="action"
+                                            value="Product"
+                                        />
+                                        <c:param
+                                            name="page"
+                                            value="${requestScope.page - 1}"
+                                        />
+                                        <c:if test="${param.search != null}">
+                                            <c:param
+                                                name="search"
+                                                value="${param.search}"
+                                            />
+                                        </c:if>
+                                    </c:url>
+                                    <div class="step">
+                                        <a
+                                            class="pagenum pagenum-left"
+                                            href="${prevPaging}"
+                                        >
+                                            <svg
+                                                class="arrow-left"
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M6 3L11 8L6 13"
+                                                    stroke="currentColor"
+                                                    stroke-width="1.5"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                            <p>Previous</p>
+                                        </a>
+                                    </div>
+                                </c:if>
 
-                <!-- Hiển thị nút chuyển trang -->
-                <c:if test="${TOTAL_PAGES > 1}">
-                    <div class="pagination">
-                        <c:if test="${CURRENT_PAGE > 1}">
-                            <a href="ProductController?page=${CURRENT_PAGE - 1}">&laquo; Previous</a>
+                                <c:forEach
+                                    var="pageNum"
+                                    begin="1"
+                                    end="${(requestScope.TOTAL_PRODUCT - 1) / requestScope.PRODUCTS_PER_PAGE + 1}"
+                                >
+                                    <c:choose>
+                                        <c:when
+                                            test="${pageNum == requestScope.page}"
+                                        >
+                                            <p
+                                                class="pagenum pagenum-num pagenum-active"
+                                            >
+                                                ${pageNum}
+                                            </p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:url
+                                                var="paging"
+                                                value="MainController"
+                                            >
+                                                <c:param
+                                                    name="action"
+                                                    value="Product"
+                                                />
+                                                <c:param
+                                                    name="page"
+                                                    value="${pageNum}"
+                                                />
+                                                <c:if
+                                                    test="${param.search != null}"
+                                                >
+                                                    <c:param
+                                                        name="search"
+                                                        value="${param.search}"
+                                                    />
+                                                </c:if>
+                                            </c:url>
+                                            <a
+                                                class="pagenum pagenum-num"
+                                                href="${paging}"
+                                                >${pageNum}</a
+                                            >
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+
+                                <c:if
+                                    test="${requestScope.page < Math.ceil(requestScope.TOTAL_PRODUCT / requestScope.PRODUCTS_PER_PAGE)}"
+                                >
+                                    <c:url
+                                        var="nextPaging"
+                                        value="MainController"
+                                    >
+                                        <c:param
+                                            name="action"
+                                            value="Product"
+                                        />
+                                        <c:param
+                                            name="page"
+                                            value="${requestScope.page + 1}"
+                                        />
+                                        <c:if test="${param.search != null}">
+                                            <c:param
+                                                name="search"
+                                                value="${param.search}"
+                                            />
+                                        </c:if>
+                                    </c:url>
+                                    <div class="step">
+                                        <a
+                                            class="pagenum pagenum-right"
+                                            href="${nextPaging}"
+                                        >
+                                            <p>Next</p>
+                                            <svg
+                                                class="arrow-right"
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M6 3L11 8L6 13"
+                                                    stroke="currentColor"
+                                                    stroke-width="1.5"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </c:if>
+                            </div>
                         </c:if>
-                        <c:forEach var="pageNum" begin="1" end="${TOTAL_PAGES}">
-                            <c:choose>
-                                <c:when test="${pageNum == CURRENT_PAGE}">
-                                    <strong>${pageNum}</strong>
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="ProductController?page=${pageNum}">${pageNum}</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                        <c:if test="${CURRENT_PAGE < TOTAL_PAGES}">
-                            <a href="ProductController?page=${CURRENT_PAGE + 1}">Next &raquo;</a>
+                        <c:if test="${empty BREAD_LIST}">
+                            <p>No products found.</p>
                         </c:if>
                     </div>
-                </c:if>
-            </c:if>
+                </div>
+            </div>
+        </main>
 
-            <a href="index.jsp">Home</a>
-        </c:if>
-
-        <c:if test="${empty BREAD_LIST}">
-            <p>No products found.</p>
-        </c:if>
-
+        <c:import url="./footer.jsp" />
     </body>
 </html>

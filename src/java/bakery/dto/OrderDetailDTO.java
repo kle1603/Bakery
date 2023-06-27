@@ -11,15 +11,15 @@ package bakery.dto;
  */
 public class OrderDetailDTO {
     private OrderDTO order;
-    private BreadSizeDTO breadSize;
+    private BreadDTO breadId;
     private int quantity;
 
     public OrderDetailDTO() {
     }
 
-    public OrderDetailDTO(OrderDTO order, BreadSizeDTO breadSize, int quantity) {
+    public OrderDetailDTO(OrderDTO order, BreadDTO breadId, int quantity) {
         this.order = order;
-        this.breadSize = breadSize;
+        this.breadId = breadId;
         this.quantity = quantity;
     }
 
@@ -31,12 +31,12 @@ public class OrderDetailDTO {
         this.order = order;
     }
 
-    public BreadSizeDTO getBreadSize() {
-        return breadSize;
+    public BreadDTO getBreadId() {
+        return breadId;
     }
 
-    public void setBreadSize(BreadSizeDTO breadSize) {
-        this.breadSize = breadSize;
+    public void setBreadId(BreadDTO breadId) {
+        this.breadId = breadId;
     }
 
     public int getQuantity() {
@@ -49,8 +49,10 @@ public class OrderDetailDTO {
 
     @Override
     public String toString() {
-        return "OrderDetailDTO{" + "order=" + getOrder() + ", breadSize=" + getBreadSize() + ", quantity=" + getQuantity() + '}';
+        return "OrderDetailDTO{" + "order=" + order + ", breadId=" + breadId + ", quantity=" + quantity + '}';
     }
+
+    
     
     
 }

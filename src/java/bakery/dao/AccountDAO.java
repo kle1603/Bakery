@@ -36,8 +36,9 @@ public class AccountDAO {
             + " INNER JOIN roles r ON a.role_id = r.role_id"
             + " WHERE a.username = ? AND a.password = ?";
     private static final String LOGIN_WITH_GOOGLE = "{call SaveGoogleData(?, ?, ?, ?, ?, ?, ?)}";
-    private static final String GET_PRODUCT = "{call GetDefaultBreads(?, ?)}";
+    private static final String GET_PRODUCT = "{call GetProductList(?, ?, ?, ?)}";
     private static final String GET_TOTAL_PRODUCT = "{call GetTotalProducts}";
+    public int totalProducts = 0;   
 
     public boolean registerAccount(String username, String email, String password) throws SQLException {
         Connection c = null;
@@ -108,7 +109,7 @@ public class AccountDAO {
     }
 
     public AccountDTO checkLogin(String username, String password) throws SQLException {
-        AccountDTO account = null;
+        AccountDTO account = new AccountDTO();
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -129,7 +130,6 @@ public class AccountDAO {
                     RoleDTO role = new RoleDTO(rs.getString("role_id"), rs.getString("role_name"));
 
                     // Tạo đối tượng AccountDTO từ thông tin đã lấy từ cơ sở dữ liệu
-                    account = new AccountDTO();
                     account.setAccountId(accountId);
                     account.setUsername(username);
                     account.setPassword(password);
@@ -186,18 +186,20 @@ public class AccountDAO {
         return check;
     }
 
-    public List<BreadDTO> getListProduct(int pageNumber, int pageSize) throws SQLException, ClassNotFoundException {
+    public List<BreadDTO> getListProduct(int pageNumber, int pageSize, String search) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         List<BreadDTO> productList = new ArrayList<>();
-
+        
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 cs = conn.prepareCall(GET_PRODUCT);
                 cs.setInt(1, pageNumber); // Số trang yêu cầu
                 cs.setInt(2, pageSize); // Số sản phẩm trên mỗi trang
+                cs.setString(3, search); // Số sản phẩm trên mỗi trang
+                cs.registerOutParameter(4, Types.INTEGER); // Số sản phẩm trên mỗi trang
 
                 rs = cs.executeQuery();
 
@@ -206,7 +208,7 @@ public class AccountDAO {
                     int breadTypeId = rs.getInt("bread_type_id");
                     String breadTypeName = rs.getString("bread_type_name");
                     String breadName = rs.getString("bread_name");
-                    int unitsInStock = rs.getInt("units_in_stock");
+                    double price = rs.getDouble("price");
                     String description = rs.getString("description");
                     String imageUrl = rs.getString("image_url");
 
@@ -218,12 +220,15 @@ public class AccountDAO {
                     bread.setBreadId(breadId);
                     bread.setBreadType(breadType);
                     bread.setBreadName(breadName);
-                    bread.setUnitsInStock(unitsInStock);
+                    bread.setPrice(price);
                     bread.setDescription(description);
                     bread.setImageUrl(imageUrl);
 
                     productList.add(bread);
                 }
+
+                totalProducts = cs.getInt(4);               
+
             }
         } finally {
             if (rs != null) {
@@ -240,35 +245,4 @@ public class AccountDAO {
         return productList;
     }
 
-    public int getTotalProducts() throws SQLException, ClassNotFoundException {
-        Connection conn = null;
-        CallableStatement cs = null;
-        ResultSet rs = null;
-        int totalProducts = 0;
-
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                cs = conn.prepareCall(GET_TOTAL_PRODUCT);
-
-                rs = cs.executeQuery();
-
-                if (rs.next()) {
-                    totalProducts = rs.getInt("TotalProducts");
-                }
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (cs != null) {
-                cs.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-
-        return totalProducts;
-    }
 }

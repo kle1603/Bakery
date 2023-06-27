@@ -13,18 +13,20 @@ public class BreadDTO extends ImageDTO {
     private int breadId;
     private BreadTypeDTO breadType;
     private String breadName;
-    private int unitsInStock;
     private String description;
+    private double price;
+    private int quantity;
 
     public BreadDTO() {
     }
 
-    public BreadDTO(int breadId, BreadTypeDTO breadType, String breadName, int unitsInStock, String description) {
+    public BreadDTO(int breadId, BreadTypeDTO breadType, String breadName, int unitsInStock, String description, double price, int quantity) {
         this.breadId = breadId;
         this.breadType = breadType;
         this.breadName = breadName;
-        this.unitsInStock = unitsInStock;
         this.description = description;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     public int getBreadId() {
@@ -51,14 +53,6 @@ public class BreadDTO extends ImageDTO {
         this.breadName = breadName;
     }
 
-    public int getUnitsInStock() {
-        return unitsInStock;
-    }
-
-    public void setUnitsInStock(int unitsInStock) {
-        this.unitsInStock = unitsInStock;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -67,10 +61,29 @@ public class BreadDTO extends ImageDTO {
         this.description = description;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
-        return "BreadDTO{" + "breadId=" + getBreadId() + ", breadType=" + getBreadType() + ", breadName=" + getBreadName() + ", unitsInStock=" + getUnitsInStock() + ", description=" + getDescription() + '}';
+        return "BreadDTO{" + "breadId=" + breadId + ", breadType=" + breadType + ", breadName=" + breadName + ", description=" + description + ", price=" + price + ", quantity=" + quantity + '}';
     }
+
+
+
     
     
 }
