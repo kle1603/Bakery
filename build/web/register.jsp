@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Bakery's Sign Up</title>
+        <title>Smaller</title>
 
         <!-- Embed Reset -->
         <link rel="stylesheet" href="./assets/css/reset.css" />

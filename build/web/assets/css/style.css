@@ -1,6 +1,9 @@
 @import url(./index.css);
 @import url(./product.css);
 @import url(./register.css);
+@import url(./contact.css);
+@import url(./blog.css);
+@import url(./about.css);
 
 * {
     box-sizing: border-box;

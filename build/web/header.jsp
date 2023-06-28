@@ -24,13 +24,13 @@
                                 <a href="./pricing.jsp" class="navbar__link">Pricing</a>
                             </li>
                             <li class="navbar__item">
-                                <a href="" class="navbar__link">Contact us</a>
+                                <a href="./contact.jsp" class="navbar__link">Contact us</a>
                             </li>
                             <li class="navbar__item">
-                                <a href="" class="navbar__link">Blog</a>
+                                <a href="./blog.jsp" class="navbar__link">Blog</a>
                             </li>
                             <li class="navbar__item">
-                                <a href="" class="navbar__link">About us</a>
+                                <a href="./about.jsp" class="navbar__link">About us</a>
                             </li>
                         </ul>
                     </div>
