@@ -34,6 +34,9 @@ public class MainController extends HttpServlet {
     
     private static final String PRODUCT = "Product";
     private static final String PRODUCT_CONTROLLER = "ProductController";
+    
+    private static final String ADD_TO_CART = "AddToCart";
+    private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,6 +59,9 @@ public class MainController extends HttpServlet {
                     break;
                 case PRODUCT: ;
                     url = PRODUCT_CONTROLLER;
+                    break;
+                case ADD_TO_CART: ;
+                    url = ADD_TO_CART_CONTROLLER;
                     break;
                 default:
                     url = WELCOME_PAGE;

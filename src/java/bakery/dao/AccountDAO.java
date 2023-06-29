@@ -8,6 +8,7 @@ package bakery.dao;
 import bakery.dto.AccountDTO;
 import bakery.dto.BreadDTO;
 import bakery.dto.BreadTypeDTO;
+import bakery.dto.CartItemDTO;
 import bakery.dto.CustomerDTO;
 import bakery.dto.GoogleDTO;
 import bakery.dto.ImageDTO;
@@ -31,14 +32,12 @@ public class AccountDAO {
     private static final String REGISTER = "{CALL RegisterAccount(?, ?, ?)}";
     private static final String DUPLICATE_USERNAME = "{CALL CheckDuplicateUsername(?, ?)}";
     private static final String DUPLICATE_EMAIL = "{CALL CheckDuplicateEmail(?, ?)}";
-    private static final String LOGIN = "SELECT a.account_id, a.username, a.password, a.email, r.role_id, r.role_name"
-            + " FROM account a"
-            + " INNER JOIN roles r ON a.role_id = r.role_id"
-            + " WHERE a.username = ? AND a.password = ?";
+    private static final String LOGIN = "{CALL CheckLogin(?, ?)}";
     private static final String LOGIN_WITH_GOOGLE = "{call SaveGoogleData(?, ?, ?, ?, ?, ?, ?)}";
     private static final String GET_PRODUCT = "{call GetProductList(?, ?, ?, ?)}";
     private static final String GET_TOTAL_PRODUCT = "{call GetTotalProducts}";
-    public int totalProducts = 0;   
+    private static final String ADD_TO_CART = "{CALL AddToCartItem(?, ?)}";
+    public int totalProducts = 0;
 
     public boolean registerAccount(String username, String email, String password) throws SQLException {
         Connection c = null;
@@ -110,27 +109,36 @@ public class AccountDAO {
 
     public AccountDTO checkLogin(String username, String password) throws SQLException {
         AccountDTO account = new AccountDTO();
-        Connection conn = null;
-        PreparedStatement ptm = null;
+        Connection c = null;
+        CallableStatement cs = null;
         ResultSet rs = null;
 
         try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(LOGIN);
-                ptm.setString(1, username);
-                ptm.setString(2, password);
-                rs = ptm.executeQuery();
+            c = DBUtils.getConnection();
+            if (c != null) {
+                cs = c.prepareCall(LOGIN);
+                cs.setString(1, username);
+                cs.setString(2, password);
+                rs = cs.executeQuery();
 
                 if (rs.next()) {
-                    int accountId = rs.getInt("account_id");
+                    int customerId = rs.getInt("customer_id");
+                    String firstName = rs.getString("first_name");
+                    String lastName = rs.getString("last_name");
+                    String address = rs.getString("address");
+                    String phoneNumber = rs.getString("phone_number");
                     String email = rs.getString("email");
+                    String roleName = rs.getString("role_name");
+                    String roleId = rs.getString("role_id");
 
-                    // Tạo đối tượng RoleDTO từ roleId
-                    RoleDTO role = new RoleDTO(rs.getString("role_id"), rs.getString("role_name"));
+                    // Tạo đối tượng CustomerDTO từ thông tin đã lấy từ cơ sở dữ liệu
+                    CustomerDTO customer = new CustomerDTO(customerId, firstName, lastName, address, phoneNumber);
+
+                    // Tạo đối tượng RoleDTO từ roleName
+                    RoleDTO role = new RoleDTO(roleId, roleName);
 
                     // Tạo đối tượng AccountDTO từ thông tin đã lấy từ cơ sở dữ liệu
-                    account.setAccountId(accountId);
+                    account.setCustomer(customer);
                     account.setUsername(username);
                     account.setPassword(password);
                     account.setEmail(email);
@@ -143,11 +151,11 @@ public class AccountDAO {
             if (rs != null) {
                 rs.close();
             }
-            if (ptm != null) {
-                ptm.close();
+            if (cs != null) {
+                cs.close();
             }
-            if (conn != null) {
-                conn.close();
+            if (c != null) {
+                c.close();
             }
         }
         return account;
@@ -191,7 +199,7 @@ public class AccountDAO {
         CallableStatement cs = null;
         ResultSet rs = null;
         List<BreadDTO> productList = new ArrayList<>();
-        
+
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
@@ -227,7 +235,7 @@ public class AccountDAO {
                     productList.add(bread);
                 }
 
-                totalProducts = cs.getInt(4);               
+                totalProducts = cs.getInt(4);
 
             }
         } finally {
@@ -243,6 +251,44 @@ public class AccountDAO {
         }
 
         return productList;
+    }
+    
+    public CartItemDTO addItem(String customerId, String breadId) throws SQLException {
+        CartItemDTO cart = new CartItemDTO();
+        Connection c = null;
+        CallableStatement cs = null;
+        ResultSet rs = null;
+
+        try {
+            c = DBUtils.getConnection();
+            if (c != null) {
+                cs = c.prepareCall(ADD_TO_CART);
+                int cId = Integer.parseInt(customerId);
+                int bId = Integer.parseInt(breadId);
+                cs.setInt(1, cId);
+                cs.setInt(2, bId);
+                rs = cs.executeQuery();
+
+                if (rs.next()) {
+                    String breadName = rs.getString("bread_name");
+                }
+            }
+            
+//            tôi thua!!!
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
+            if (c != null) {
+                c.close();
+            }
+        }
+        return cart;
     }
 
 }

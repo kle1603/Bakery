@@ -4,6 +4,7 @@
 @import url(./contact.css);
 @import url(./blog.css);
 @import url(./about.css);
+@import url(./headerLogin.css);
 
 * {
     box-sizing: border-box;

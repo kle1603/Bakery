@@ -22,12 +22,8 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginController extends HttpServlet {
 
-    private static final String LOGIN_PAGE="login.jsp";
-    private static final String ADMIN_PAGE="index.jsp";
-    private static final String USER_PAGE="index.jsp";
-    private static final String US="US";
-    private static final String AD="AD";
-
+    private static final String LOGIN_PAGE = "login.jsp";
+    private static final String INDEX_PAGE = "index.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,27 +33,19 @@ public class LoginController extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             AccountDAO dao = new AccountDAO();
-            AccountDTO accountUser= dao.checkLogin(username, password);
-            
-            if(accountUser == null){
+            AccountDTO accountUser = dao.checkLogin(username, password);
+
+            if (accountUser == null) {
                 request.setAttribute("ERROR", "Incorrect userID or password");
-            }else {
-                RoleDTO role = accountUser.getRole();
+            } else {
                 HttpSession session = request.getSession();
                 
-                if(role.getRoleId().trim().equals("AD")){
-                    url= ADMIN_PAGE;
-                    session.setAttribute("LOGIN_USER", accountUser);
-                } else if(role.getRoleId().trim().equals("US")){
-                    url=USER_PAGE;
-                    session.setAttribute("LOGIN_USER", accountUser);
-                } else{
-                    request.setAttribute("ERROR", "Your role is not support! ");
-                }
+                url = INDEX_PAGE;
+                session.setAttribute("LOGIN_USER", accountUser);
             }
         } catch (Exception e) {
-            log("error at LoginController: " +e.toString());
-        } finally{
+            log("error at LoginController: " + e.toString());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

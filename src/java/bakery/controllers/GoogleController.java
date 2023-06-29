@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,11 +36,13 @@ public class GoogleController extends HttpServlet {
         // Gọi hàm loginWithGoogle từ DAO để lưu thông tin người dùng vào cơ sở dữ liệu
         try {
             AccountDAO accountDAO = new AccountDAO();
+            HttpSession session = request.getSession();
 
             boolean loginSuccess = accountDAO.loginWithGoogle(gdto);
 
             if (loginSuccess) {
                 url = SUCCESS;
+                session.setAttribute("LOGIN_USER", gdto);
             } else {
                 request.setAttribute("errorMessage", "Đăng nhập không thành công.");
             }

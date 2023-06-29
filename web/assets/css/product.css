@@ -131,6 +131,12 @@
     justify-content: space-between;
 }
 
+.product__item {
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
 .product__item-img-wrapper {
     position: relative;
     cursor: pointer;
@@ -180,8 +186,9 @@
 
 .product__item-title {
     margin-top: 10px;
-    width: 84%;
-    display: inline-block;
+    /* width: 84%; */
+    /* display: inline-block; */
+    text-align: left;
     font-weight: 500;
     font-size: 2rem;
     line-height: 1.2;

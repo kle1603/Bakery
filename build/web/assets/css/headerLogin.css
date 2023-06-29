@@ -1,0 +1,17 @@
+.header-icon {
+    padding: 5px;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    transition: all ease 0.3s;
+}
+
+.header-icon:hover {
+    color: var(--secondary-color);
+}
+
+.header-icon__text {
+    font-size: 2rem;
+}
