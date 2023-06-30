@@ -7,9 +7,11 @@ package bakery.controllers;
 
 import bakery.dao.AccountDAO;
 import bakery.dto.AccountDTO;
+import bakery.dto.BreadDTO;
 import bakery.dto.CartItemDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +24,9 @@ import javax.servlet.http.HttpSession;
  */
 public class AddToCartController extends HttpServlet {
 
-    private static final String ERROR = "cart.html";
+    private static final String ERROR = "product.jsp";
+    private static final String SUCCESS = "product.jsp";
+    private static final int PRODUCTS_PER_PAGE = 12;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,10 +36,31 @@ public class AddToCartController extends HttpServlet {
         try {
             String customerId = request.getParameter("customerId");
             String breadId = request.getParameter("breadId");
+            String search = request.getParameter("search");
+            String page = request.getParameter("page");
             AccountDAO dao = new AccountDAO();
-            CartItemDTO listItem = dao.addItem(customerId, breadId);
+            List<BreadDTO> breadList = dao.getListProduct(Integer.parseInt(page), PRODUCTS_PER_PAGE, search);
+            int totalProducts = dao.totalProducts;
 
-            url = ERROR;
+            if (dao.addItem(customerId, breadId)) {
+                request.setAttribute("BREAD_LIST", breadList);
+                request.setAttribute("search", search);
+                request.setAttribute("page", page);   
+                request.setAttribute("PRODUCTS_PER_PAGE", PRODUCTS_PER_PAGE);
+                request.setAttribute("TOTAL_PRODUCT", totalProducts);
+                
+                url = SUCCESS;
+            } else {                
+                request.setAttribute("BREAD_LIST", breadList);
+                request.setAttribute("search", search);
+                request.setAttribute("page", page);
+                request.setAttribute("PRODUCTS_PER_PAGE", PRODUCTS_PER_PAGE);
+                request.setAttribute("TOTAL_PRODUCT", totalProducts);
+                request.setAttribute("ERROR_BREAD", breadId);
+                
+                url = ERROR;
+            }
+
         } catch (Exception e) {
             log("error at LoginController: " + e.toString());
         } finally {

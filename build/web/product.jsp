@@ -97,14 +97,16 @@
                                                         alt=""
                                                         />
                                                 </a>
-                                                
                                                 <c:url var="cartUrl" value="MainController">
                                                     <c:param name="action" value="AddToCart"/>
                                                     <c:param name="customerId" value="${sessionScope.LOGIN_USER.customer.customerId}"/>
                                                     <c:param name="breadId" value="${bread.breadId}"/>
+                                                    <c:param name="search" value="${param.search}"/>
+                                                    <c:param name="page" value="${requestScope.page}"/>
                                                 </c:url>
+                                                <c:url var="loginUrl" value="login.jsp"/>
                                                 <a
-                                                    href="${cartUrl}"
+                                                    href="${empty sessionScope.LOGIN_USER ? loginUrl : cartUrl}"
                                                     class="product__item-img-title"
                                                     >
                                                     Add to Cart
@@ -130,6 +132,11 @@
                                                     >
                                                     ${bread.breadName}
                                                 </a>
+                                                <c:if test="${requestScope.ERROR_BREAD eq String.valueOf(bread.breadId)}">
+                                                    <p>Bạn đã thêm sản phẩm vượt quá số lượng hàng của chúng tôi</p>
+                                                </c:if>
+
+
                                                 <div class="row">
                                                     <div class="product__item-rate">
                                                         <img

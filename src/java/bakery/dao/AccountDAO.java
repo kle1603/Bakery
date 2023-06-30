@@ -37,7 +37,7 @@ public class AccountDAO {
     private static final String LOGIN_WITH_GOOGLE = "{call SaveGoogleData(?, ?, ?, ?, ?, ?, ?)}";
     private static final String GET_PRODUCT = "{call GetProductList(?, ?, ?, ?)}";
     private static final String GET_TOTAL_PRODUCT = "{call GetTotalProducts}";
-    private static final String ADD_TO_CART = "{CALL AddToCartItem(?, ?, ?, ?, ?, ?, ?, ?)}";
+    private static final String ADD_TO_CART = "{CALL AddToCartItem(?, ?)}";
     public int totalProducts = 0;
 
     public boolean registerAccount(String username, String email, String password) throws SQLException {
@@ -56,6 +56,7 @@ public class AccountDAO {
                 check = ps.executeUpdate() > 0;
             }
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (ps != null) {
                 ps.close();
@@ -96,6 +97,7 @@ public class AccountDAO {
                 check = cs.getBoolean(2);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (cs != null) {
                 cs.close();
@@ -256,11 +258,10 @@ public class AccountDAO {
         return productList;
     }
 
-    public CartItemDTO addItem(String customerId, String breadId) throws SQLException {
-        CartItemDTO cartItem = new CartItemDTO();
+    public boolean addItem(String customerId, String breadId) throws SQLException {
+        boolean check = false;
         Connection c = null;
         CallableStatement cs = null;
-        ResultSet rs = null;
 
         try {
             c = DBUtils.getConnection();
@@ -270,44 +271,12 @@ public class AccountDAO {
                 int bId = Integer.parseInt(breadId);
                 cs.setInt(1, cId);
                 cs.setInt(2, bId);
-                rs = cs.executeQuery();
-
-                if (rs.next()) {
-                    int breadIdOutput = cs.getInt(1);
-                    String breadName = cs.getString(2);
-                    String description = cs.getString(3);
-                    double price = cs.getDouble(4);
-                    int quantityInStock = cs.getInt(5);
-                    String breadTypeName = cs.getString(6);
-                    int quantityInCart = cs.getInt(7);
-                    int cartId = cs.getInt(8);
-                    
-                    BreadTypeDTO breadType = new BreadTypeDTO();
-                    breadType.setBreadTypeName(breadTypeName);
-
-                    BreadDTO bread = new BreadDTO();
-                    bread.setBreadId(breadIdOutput);
-                    bread.setBreadName(breadName);
-                    bread.setDescription(description);
-                    bread.setPrice(price);
-                    bread.setQuantity(quantityInStock);
-                    bread.setBreadType(breadType);
-                    
-                    CartDTO cart = new CartDTO();
-                    cart.setCartId(cartId);
-                    
-                    cartItem.setQuantity(quantityInCart);
-                    cartItem.setCartId(cart);
-                }
+                check = cs.executeUpdate() > 0;
             }
 
-//            tôi thua!!!
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) {
-                rs.close();
-            }
             if (cs != null) {
                 cs.close();
             }
@@ -315,7 +284,7 @@ public class AccountDAO {
                 c.close();
             }
         }
-        return cartItem;
+        return check;
     }
 
 }
