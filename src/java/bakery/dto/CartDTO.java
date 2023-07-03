@@ -12,7 +12,6 @@ package bakery.dto;
 public class CartDTO {
     private int cartId;
     private CustomerDTO customerId;
-    private int quantity;
 
     public CartDTO() {
     }
@@ -20,7 +19,6 @@ public class CartDTO {
     public CartDTO(int cartId, CustomerDTO customerId, int quantity) {
         this.cartId = cartId;
         this.customerId = customerId;
-        this.quantity = quantity;
     }
 
     public int getCartId() {
@@ -39,18 +37,9 @@ public class CartDTO {
         this.customerId = customerId;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     @Override
     public String toString() {
-        return "CartDTO{" + "cartId=" + cartId + ", customerId=" + customerId + ", quantity=" + quantity + '}';
-    }
-    
+        return "CartDTO{" + "cartId=" + cartId + ", customerId=" + customerId + '}';
+    }   
     
 }

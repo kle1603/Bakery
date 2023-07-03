@@ -1,0 +1,79 @@
+.user {
+    background: var(--background-color);
+}
+
+.user__inner {
+    position: relative;
+}
+
+.user__background {
+    width: 100%;
+    height: 300px;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user__avatar {
+    position: absolute;
+    top: 150px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.ava-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user__title {
+    padding-top: 160px;
+    text-align: start;
+    font-weight: 600;
+    font-size: 5rem;
+    line-height: 1.08;
+    color: #131717;
+}
+
+.user__information {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.user__phone,
+.user__email,
+.user__address {
+    padding-top: 10px;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.2;
+    color: var(--text-color);
+}
+
+.user__button {
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user__logout,
+.user__product {
+    padding: 20px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 1.08;
+    color: #676562;
+}

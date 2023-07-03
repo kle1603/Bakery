@@ -37,6 +37,15 @@ public class MainController extends HttpServlet {
     
     private static final String ADD_TO_CART = "AddToCart";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
+    
+    private static final String CART_ITEM = "Cart";
+    private static final String CART_ITEM_CONTROLLER = "CartItemController";
+    
+    private static final String DELETE_ITEM = "DeleteItem";
+    private static final String DELETE_CONTROLLER = "DeleteController";
+    
+    private static final String UPDATE_ITEM = "UpdateItem";
+    private static final String UPDATE_CONTROLLER = "UpdateController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,6 +71,15 @@ public class MainController extends HttpServlet {
                     break;
                 case ADD_TO_CART: ;
                     url = ADD_TO_CART_CONTROLLER;
+                    break;
+                case CART_ITEM: ;
+                    url = CART_ITEM_CONTROLLER;
+                    break;
+                case DELETE_ITEM: ;
+                    url = DELETE_CONTROLLER;
+                    break;
+                case UPDATE_ITEM: ;
+                    url = UPDATE_CONTROLLER;
                     break;
                 default:
                     url = WELCOME_PAGE;

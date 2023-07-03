@@ -1,11 +1,4 @@
-@import url(./index.css);
-@import url(./product.css);
-@import url(./register.css);
-@import url(./contact.css);
-@import url(./blog.css);
-@import url(./about.css);
-@import url(./headerLogin.css);
-@import url(./cart.css);
+
 
 * {
     box-sizing: border-box;
@@ -40,6 +33,16 @@ button {
     border: none;
     font-size: inherit;
     font-family: inherit;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 /* ==================== Common ==================== */

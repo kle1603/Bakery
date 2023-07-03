@@ -10,25 +10,25 @@ package bakery.dto;
  * @author Kle
  */
 public class CartItemDTO {
-    private CartDTO cartId;
+    private CartDTO cart;
     private BreadDTO breadId;
     private int quantity;
 
     public CartItemDTO() {
     }
 
-    public CartItemDTO(CartDTO cartId, BreadDTO breadId, int quantity) {
-        this.cartId = cartId;
+    public CartItemDTO(CartDTO cart, BreadDTO breadId, int quantity) {
+        this.cart = cart;
         this.breadId = breadId;
         this.quantity = quantity;
     }
 
-    public CartDTO getCartId() {
-        return cartId;
+    public CartDTO getCart() {
+        return cart;
     }
 
-    public void setCartId(CartDTO cartId) {
-        this.cartId = cartId;
+    public void setCart(CartDTO cart) {
+        this.cart = cart;
     }
 
     public BreadDTO getBreadId() {
@@ -49,8 +49,10 @@ public class CartItemDTO {
 
     @Override
     public String toString() {
-        return "CartItemDTO{" + "cartId=" + cartId + ", breadId=" + breadId + ", quantity=" + quantity + '}';
+        return "CartItemDTO{" + "cart=" + cart + ", breadId=" + breadId + ", quantity=" + quantity + '}';
     }
+
+    
     
     
 }

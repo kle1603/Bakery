@@ -18,7 +18,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
         />
 
         <!-- Embed Style -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/main.css" />
     </head>
     <body>
                 <%-- Kiểm tra xem đã đăng nhập hay chưa --%>

@@ -19,7 +19,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
         />
 
         <!-- Styles CSS -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/main.css" />
     </head>
     <body>
         <!-- Header -->

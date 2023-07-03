@@ -50,6 +50,7 @@ public class LoginController extends HttpServlet {
                 url = INDEX_PAGE;
                 session.setAttribute("LOGIN_USER", accountUser);
                 session.setAttribute("TOTAL_ITEMS", totalItems);
+                session.setAttribute("CUSTOMER_ID", customerId);
             }
         } catch (Exception e) {
             log("error at LoginController: " + e.toString());
