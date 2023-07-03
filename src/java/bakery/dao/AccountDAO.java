@@ -34,10 +34,11 @@ public class AccountDAO {
     private static final String DUPLICATE_USERNAME = "{CALL CheckDuplicateUsername(?, ?)}";
     private static final String DUPLICATE_EMAIL = "{CALL CheckDuplicateEmail(?, ?)}";
     private static final String LOGIN = "{CALL CheckLogin(?, ?)}";
-    private static final String LOGIN_WITH_GOOGLE = "{call SaveGoogleData(?, ?, ?, ?, ?, ?, ?)}";
-    private static final String GET_PRODUCT = "{call GetProductList(?, ?, ?, ?)}";
-    private static final String GET_TOTAL_PRODUCT = "{call GetTotalProducts}";
+    private static final String LOGIN_WITH_GOOGLE = "{CALL SaveGoogleData(?, ?, ?, ?, ?, ?, ?)}";
+    private static final String GET_PRODUCT = "{CALL GetProductList(?, ?, ?, ?)}";
+    private static final String GET_TOTAL_PRODUCT = "{CALL GetTotalProducts}";
     private static final String ADD_TO_CART = "{CALL AddToCartItem(?, ?)}";
+    private static final String GET_GOOGLE = "{CALL GetCustomerByGoogleID(?)}";
     public int totalProducts = 0;
 
     public boolean registerAccount(String username, String email, String password) throws SQLException {
@@ -108,6 +109,55 @@ public class AccountDAO {
         }
 
         return check;
+    }
+    
+    public AccountDTO getInformation(String parameter, String type) throws SQLException {
+        Connection c = null;
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        AccountDTO account = new AccountDTO();
+
+        try {
+            c = DBUtils.getConnection();
+
+            if (c != null) {
+                switch (type) {
+//                    case "EMAIL":
+//                        cs = c.prepareCall(DUPLICATE_EMAIL);
+//                        break;
+                    case "GOOGLE_ID":
+                        cs = c.prepareCall(GET_GOOGLE);
+                        break;
+                    default:
+                        return null;
+                }
+                cs.setString(1, parameter);
+                rs = cs.executeQuery();
+                
+                while(rs.next()){
+                    int customerId = rs.getInt("customer_id");
+                    CustomerDTO customer = new CustomerDTO();
+                    customer.setCustomerId(customerId);
+                    
+                    account.setCustomer(customer);
+                    
+                }
+                
+                
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cs != null) {
+                cs.close();
+            }
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return account;
     }
 
     public AccountDTO checkLogin(String username, String password) throws SQLException {

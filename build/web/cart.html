@@ -4,8 +4,65 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+
+        <!-- Embed Reset -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+
+        <!-- Embed Fonts -->
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+        <link
+            href="https://fonts.cdnfonts.com/css/roobert?styles=49579,49577,49581"
+            rel="stylesheet"
+        />
+
+        <!-- Embed Style -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        <h1>Hello</h1>
+        <section class="cart">
+            <div class="container">
+                <h1 class="cart__heading">Your Cart</h1>
+
+                <article class="cart__list">
+                    <section class="cart__item">
+                        <a href="" class="cart__delete"
+                            ><img
+                                src="./assets/icons/delete.svg"
+                                alt=""
+                                class="cart__delete-icon"
+                        /></a>
+                        <div class="cart__item-image">
+                            <img
+                                src="./assets/image/about-img-01.png"
+                                alt=""
+                                class="cart__image"
+                            />
+                        </div>
+                        <h2 class="cart__item-title">Nike Airmax 270 react</h2>
+                    </section>
+                    <div class="cart__item-content">
+                        <p class="cart__price">$10</p>
+                        <div class="cart__quantity">
+                            <button class="cart__plus">
+                                <img
+                                    src="./assets/icons/plus.svg"
+                                    alt=""
+                                    class="cart__plus-icon"
+                                />
+                            </button>
+                            <input type="text" placeholder="10" />
+                            <button class="cart__minus">
+                                <img
+                                    src="./assets/icons/minus.svg"
+                                    alt=""
+                                    class="cart__plus-icon"
+                                />
+                            </button>
+                        </div>
+                        <p class="cart__total-price">$100</p>
+                    </div>
+                </article>
+            </div>
+        </section>
     </body>
 </html>

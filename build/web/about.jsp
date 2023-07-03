@@ -23,7 +23,16 @@ contentType="text/html;charset=UTF-8" language="java" %>
     </head>
     <body>
         <!-- Header -->
-        <c:import url="./header.jsp" />
+        <%-- Kiểm tra xem đã đăng nhập hay chưa --%>
+        <c:if test="${empty sessionScope.LOGIN_USER}">
+            <%-- Hiển thị header.jsp khi chưa đăng nhập --%>
+            <c:import url="./header.jsp" />
+        </c:if>
+
+        <c:if test="${not empty sessionScope.LOGIN_USER}">
+            <%-- Hiển thị headerLogin.jsp khi đã đăng nhập --%>
+            <c:import url="./headerLogin.jsp" />
+        </c:if>
 
         <main>
             <section class="about">

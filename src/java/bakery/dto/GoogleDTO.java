@@ -91,5 +91,10 @@ public class GoogleDTO {
     public String toString() {
         return "GoogleDTO{" + "id=" + id + ", email=" + email + ", name=" + name + ", given_name=" + given_name + ", family_name=" + family_name + ", picture=" + picture + ", locale=" + locale + '}';
     }
+
+    
+    
+
+    
     
 }

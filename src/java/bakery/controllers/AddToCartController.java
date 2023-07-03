@@ -6,6 +6,7 @@
 package bakery.controllers;
 
 import bakery.dao.AccountDAO;
+import bakery.dao.CartDAO;
 import bakery.dto.AccountDTO;
 import bakery.dto.BreadDTO;
 import bakery.dto.CartItemDTO;
@@ -40,24 +41,36 @@ public class AddToCartController extends HttpServlet {
             String page = request.getParameter("page");
             AccountDAO dao = new AccountDAO();
             List<BreadDTO> breadList = dao.getListProduct(Integer.parseInt(page), PRODUCTS_PER_PAGE, search);
-            int totalProducts = dao.totalProducts;
 
             if (dao.addItem(customerId, breadId)) {
-                request.setAttribute("BREAD_LIST", breadList);
-                request.setAttribute("search", search);
-                request.setAttribute("page", page);   
-                request.setAttribute("PRODUCTS_PER_PAGE", PRODUCTS_PER_PAGE);
-                request.setAttribute("TOTAL_PRODUCT", totalProducts);
-                
-                url = SUCCESS;
-            } else {                
+                HttpSession session = request.getSession();
+                CartDAO cart = new CartDAO();
+                List<CartItemDTO> cartItems = cart.getCartItems(Integer.parseInt(customerId));
+                int totalItems = cartItems.size();
+                int totalProducts = dao.totalProducts;
+
+                request.setAttribute("SUCCESS_BREAD", true);
+                session.setAttribute("TOTAL_ITEMS", totalItems);
                 request.setAttribute("BREAD_LIST", breadList);
                 request.setAttribute("search", search);
                 request.setAttribute("page", page);
                 request.setAttribute("PRODUCTS_PER_PAGE", PRODUCTS_PER_PAGE);
                 request.setAttribute("TOTAL_PRODUCT", totalProducts);
-                request.setAttribute("ERROR_BREAD", breadId);
-                
+
+                url = SUCCESS;
+            } else {
+                CartDAO cart = new CartDAO();
+                List<CartItemDTO> cartItems = cart.getCartItems(Integer.parseInt(customerId));
+                int totalItems = cartItems.size();
+                int totalProducts = dao.totalProducts;
+
+                request.setAttribute("BREAD_LIST", breadList);
+                request.setAttribute("search", search);
+                request.setAttribute("page", page);
+                request.setAttribute("PRODUCTS_PER_PAGE", PRODUCTS_PER_PAGE);
+                request.setAttribute("TOTAL_PRODUCT", totalProducts);
+                request.setAttribute("ERROR_BREAD", true);
+
                 url = ERROR;
             }
 

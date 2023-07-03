@@ -21,7 +21,16 @@ contentType="text/html;charset=UTF-8" language="java" %>
         <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        <c:import url="./header.jsp" />
+        <%-- Kiểm tra xem đã đăng nhập hay chưa --%>
+        <c:if test="${empty sessionScope.LOGIN_USER}">
+            <%-- Hiển thị header.jsp khi chưa đăng nhập --%>
+            <c:import url="./header.jsp" />
+        </c:if>
+
+        <c:if test="${not empty sessionScope.LOGIN_USER}">
+            <%-- Hiển thị headerLogin.jsp khi đã đăng nhập --%>
+            <c:import url="./headerLogin.jsp" />
+        </c:if>
 
         <!-- Main -->
         <main>

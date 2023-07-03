@@ -44,10 +44,9 @@ public class RegisterController extends HttpServlet {
             }
 
             if (!error) {
-                checkInsert = account.registerAccount(username, email, password);
-
-                if (checkInsert) {
-                    if (Email.sendEmail(email, "Have a nice day", Email.createEmailContent(username, email))) {
+                if (Email.sendEmail(email, "Have a nice day", Email.createEmailContent(username, email))) {
+                    checkInsert = account.registerAccount(username, email, password);
+                    if (checkInsert) {
                         url = SUCCESS;
                     }
                 }

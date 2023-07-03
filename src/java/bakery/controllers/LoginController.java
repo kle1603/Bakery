@@ -6,10 +6,13 @@
 package bakery.controllers;
 
 import bakery.dao.AccountDAO;
+import bakery.dao.CartDAO;
 import bakery.dto.AccountDTO;
+import bakery.dto.CartItemDTO;
 import bakery.dto.RoleDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +32,10 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = LOGIN_PAGE;
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        
         try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
             AccountDAO dao = new AccountDAO();
             AccountDTO accountUser = dao.checkLogin(username, password);
 
@@ -39,9 +43,13 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("ERROR", "Incorrect userID or password");
             } else {
                 HttpSession session = request.getSession();
-                
+                int customerId = accountUser.getCustomer().getCustomerId();
+                CartDAO cart = new CartDAO();
+                List<CartItemDTO> cartItems = cart.getCartItems(customerId);
+                int totalItems = cartItems.size();
                 url = INDEX_PAGE;
                 session.setAttribute("LOGIN_USER", accountUser);
+                session.setAttribute("TOTAL_ITEMS", totalItems);
             }
         } catch (Exception e) {
             log("error at LoginController: " + e.toString());

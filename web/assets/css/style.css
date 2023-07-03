@@ -5,6 +5,7 @@
 @import url(./blog.css);
 @import url(./about.css);
 @import url(./headerLogin.css);
+@import url(./cart.css);
 
 * {
     box-sizing: border-box;
@@ -16,6 +17,7 @@
     --button-color: #f7d047;
     --text-color: #2d2d2d;
     --background-color: #f2ede6;
+    --heart-color: #f2ede6;
 }
 
 html {

@@ -127,7 +127,8 @@
                                     stroke-linejoin="round"
                                 />
                             </svg>
-                            <p class="header-icon__text">(0)</p>
+                            
+                            <p class="header-icon__text">(${sessionScope.TOTAL_ITEMS})</p>
                         </a>
                     </div>
                 </div>
