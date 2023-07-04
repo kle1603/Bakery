@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ page
-contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +67,10 @@ contentType="text/html;charset=UTF-8" language="java" %>
                                 <a href="" class="user__logout"
                                     >Continues shopping</a
                                 >
-                                <a href="" class="user__product">Logout</a>
+                                <c:url var="logout" value="MainController">
+                                    <c:param name="action" value="Logout"/>
+                                </c:url>
+                                <a href="${logout}" class="user__product">Logout</a>
                             </div>
                         </div>
                     </div>
