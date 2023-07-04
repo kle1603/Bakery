@@ -87,7 +87,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                                                 />
                                             </svg>
                                         </a>
-
                                         <c:url
                                             var="update"
                                             value="MainController"
@@ -97,6 +96,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                                                 value="UpdateItem"
                                             />
                                         </c:url>
+                                            <input type="hidden" name="cartId" value="${item.cart.cartId}"/>
+                                            <input type="hidden" name="breadId" value="${item.breadId.breadId}"/>
                                         <button
                                             type="submit"
                                             name="action"
@@ -217,8 +218,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                             var="formattedTotalAmount"
                         />
                         ${item}
+                        <c:url var="checkout" value="MainController">
+                            <c:param name="action" value="Checkout" />
+                            <c:param name="totalAmount" value="${formattedTotalAmount}" />                          
+                        </c:url>
                         <div class="cart__footer-left">
-                            <a href="" class="footer-checkout btn">
+                            <a href="${checkout}" class="footer-checkout btn">
                                 <span class="footer-checkout-1">Checkout</span>
                                 |
                                 <span class="footer-checkout-2"

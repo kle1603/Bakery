@@ -49,6 +49,9 @@ public class MainController extends HttpServlet {
     
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
+    
+    private static final String CHECKOUT = "Checkout";
+    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -86,6 +89,9 @@ public class MainController extends HttpServlet {
                     break;
                 case LOGOUT: ;
                     url = LOGOUT_CONTROLLER;
+                    break;
+                case CHECKOUT: ;
+                    url = CHECKOUT_CONTROLLER;
                     break;
                 default:
                     url = WELCOME_PAGE;

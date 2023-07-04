@@ -28,11 +28,45 @@
     </head>
     <body>
         <main class="signup">
+            <div
+                class="popup__background ${requestScope.DUPLICATED_EMAIL ? 'popup__active' : 'popup__hidden'}"
+            >
+                <div class="popup__content">
+                    <div class="popup__image">
+                        <img
+                            src="./assets/icons/error.svg"
+                            alt=""
+                            class="popup__img"
+                        />
+                    </div>
+                    <div class="popup__body">
+                        <h3 class="popup__heading">Duplicate email!</h3>
+                        <p class="popup__desc">Change your email please</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="popup__background ${requestScope.DUPLICATED_USERNAME ? 'popup__active' : 'popup__hidden'}"
+            >
+                <div class="popup__content">
+                    <div class="popup__image">
+                        <img
+                            src="./assets/icons/error.svg"
+                            alt=""
+                            class="popup__img"
+                        />
+                    </div>
+                    <div class="popup__body">
+                        <h3 class="popup__heading">Duplicate username!</h3>
+                        <p class="popup__desc">Change your username please</p>
+                    </div>
+                </div>
+            </div>
             <div class="signup__inner">
                 <section class="signup-left">
                     <div class="signup-left__inner">
                         <h1 class="signup-left__heading">
-                            Welcome to Kle's Bakery
+                            Welcome to Smaller's Store
                         </h1>
                         <p class="signup-left__desc">
                             Sign up to enjoy your time
@@ -116,5 +150,13 @@
                 </section>
             </div>
         </main>
+        <script>
+            setTimeout(function () {
+                var popup = document.querySelector(".popup__active");
+                if (popup) {
+                    popup.classList.replace("popup__active", "popup__hidden");
+                }
+            }, 1000);
+        </script>
     </body>
 </html>

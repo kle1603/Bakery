@@ -3,18 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/controllers/UpdateController.java</file>
             <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/web/cart.jsp</file>
+            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/web/checkout.jsp</file>
+            <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/controllers/CheckoutController.java</file>
             <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/src/java/bakery/controllers/MainController.java</file>
             <file>file:/C:/Users/lbkha/OneDrive/Desktop/BAKERY/Bakery/web/headerLogin.jsp</file>
-=======
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/Test/Bakery/src/java/bakery/controllers/MainController.java</file>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/Test/Bakery/web/header.jsp</file>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/Test/Bakery/src/java/bakery/controllers/LogoutController.java</file>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/Test/Bakery/web/user.jsp</file>
-            <file>file:/C:/Users/lbkha/OneDrive/Desktop/Test/Bakery/web/product.jsp</file>
->>>>>>> efeefe6792e498b7cb7e7f0dfd090f8a5d766e4a
         </group>
     </open-files>
 </project-private>

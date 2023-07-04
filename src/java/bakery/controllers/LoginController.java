@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
             AccountDTO accountUser = dao.checkLogin(username, password);
 
             if (accountUser == null) {
-                request.setAttribute("ERROR", "Incorrect userID or password");
+                request.setAttribute("ERROR_LOGIN", true);
             } else {
                 HttpSession session = request.getSession();
                 int customerId = accountUser.getCustomer().getCustomerId();

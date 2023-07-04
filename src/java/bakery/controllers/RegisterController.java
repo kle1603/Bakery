@@ -36,10 +36,10 @@ public class RegisterController extends HttpServlet {
             AccountDAO account = new AccountDAO();
 
             if (account.checkDuplicate(username, "USERNAME")) {
-                request.setAttribute("DUPLICATED", "Username is already taken");
+                request.setAttribute("DUPLICATED_USERNAME", true);
                 error = true;
             } else if (account.checkDuplicate(email, "EMAIL")) {
-                request.setAttribute("DUPLICATED", "Email is already taken");
+                request.setAttribute("DUPLICATED_EMAIL", true);
                 error = true;
             }
 

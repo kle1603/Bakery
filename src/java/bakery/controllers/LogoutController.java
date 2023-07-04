@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LogoutController extends HttpServlet {
 
-    private static final String SUCCESS = "login.jsp";
+    private static final String SUCCESS = "index.jsp";
     private static final String ERROR = "user.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

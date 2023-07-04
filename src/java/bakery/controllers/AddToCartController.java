@@ -49,13 +49,14 @@ public class AddToCartController extends HttpServlet {
                 int totalItems = cartItems.size();
                 int totalProducts = dao.totalProducts;
 
-                request.setAttribute("SUCCESS_BREAD", true);
+                
                 session.setAttribute("TOTAL_ITEMS", totalItems);
                 request.setAttribute("BREAD_LIST", breadList);
                 request.setAttribute("search", search);
                 request.setAttribute("page", page);
                 request.setAttribute("PRODUCTS_PER_PAGE", PRODUCTS_PER_PAGE);
                 request.setAttribute("TOTAL_PRODUCT", totalProducts);
+                request.setAttribute("SUCCESS_BREAD", true);
 
                 url = SUCCESS;
             } else {

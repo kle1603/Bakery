@@ -28,11 +28,30 @@
     </head>
     <body>
         <main class="signup">
+            <div
+                class="popup__background ${requestScope.ERROR_LOGIN ? 'popup__active' : 'popup__hidden'}"
+            >
+                <div class="popup__content">
+                    <div class="popup__image">
+                        <img
+                            src="./assets/icons/error.svg"
+                            alt=""
+                            class="popup__img"
+                        />
+                    </div>
+                    <div class="popup__body">
+                        <h3 class="popup__heading">Warning!</h3>
+                        <p class="popup__desc">
+                            Incorrect username or password
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div class="signup__inner">
                 <section class="signup-left">
                     <div class="signup-left__inner">
                         <h1 class="signup-left__heading">
-                            Welcome to Kle's Bakery
+                            Welcome to Smaller's Store
                         </h1>
                         <p class="signup-left__desc">
                             Sign in to enjoy your time
@@ -103,5 +122,13 @@
                 </section>
             </div>
         </main>
+        <script>
+            setTimeout(function () {
+                var popup = document.querySelector(".popup__active");
+                if (popup) {
+                    popup.classList.replace("popup__active", "popup__hidden");
+                }
+            }, 1000);
+        </script>
     </body>
 </html>

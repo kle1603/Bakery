@@ -32,9 +32,26 @@ public class UpdateController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             int customerId = (int) session.getAttribute("CUSTOMER_ID");
-            String quantity = request.getParameter("quantity");
             
-            url = SUCCESS;
+            String quantity = request.getParameter("quantity");    
+            String breadId = request.getParameter("breadId");
+            String cartId = request.getParameter("cartId");
+            
+            CartDAO cart = new CartDAO();
+            int bId = Integer.parseInt(breadId);
+            int qt = Integer.parseInt(quantity);
+            int cId = Integer.parseInt(cartId);
+            boolean cartList = cart.updateItem(qt, bId, cId);
+            if (cartList) {
+                List<CartItemDTO> cartItemList = cart.getItemsByCus(customerId);
+                List<CartItemDTO> cartItems = cart.getCartItems(customerId);
+                int totalItems = cartItems.size();
+                request.setAttribute("ITEM_LIST", cartItemList);
+                session.setAttribute("TOTAL_ITEMS", totalItems);
+                url = SUCCESS;
+            } else {
+
+            }
         } catch (Exception e) {
             log("error at LoginController: " + e.toString());
         } finally {
