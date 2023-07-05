@@ -1,0 +1,17 @@
+.order__text {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    color: #676562;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order__date {
+    padding-right: 70px;
+}
+
+.order__items,
+.order__total {
+    padding-right: 50px;
+}

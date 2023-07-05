@@ -55,6 +55,9 @@ public class MainController extends HttpServlet {
     
     private static final String PAYMENT = "Payment";
     private static final String PAYMENT_CONTROLLER = "PaymentController";
+    
+    private static final String ORDER_BILL = "Order";
+    private static final String ORDER_BILL_CONTROLLER = "OrderBillController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -98,6 +101,9 @@ public class MainController extends HttpServlet {
                     break;
                 case PAYMENT: ;
                     url = PAYMENT_CONTROLLER;
+                    break;
+                case ORDER_BILL: ;
+                    url = ORDER_BILL_CONTROLLER;
                     break;
                 default:
                     url = WELCOME_PAGE;

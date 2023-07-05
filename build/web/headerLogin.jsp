@@ -88,7 +88,10 @@
                                     />
                                 </svg>
                             </a>
-                            <a href="" class="header-icon heart-icon">
+                            <c:url var="order" value="MainController">
+                                <c:param name="action" value="Order" />
+                            </c:url>
+                            <a href="${order}" class="header-icon heart-icon">
                                 <svg
                                     width="24"
                                     height="22"

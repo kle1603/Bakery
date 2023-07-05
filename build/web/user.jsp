@@ -67,14 +67,15 @@
                                             class="ava-image"
                                             />
                                     </div>
-                                    <h1 class="user__title">${LOGIN_USER.username}</h1>
+                                    
+                                    <h1 class="user__title">${not empty LOGIN_USER.username ? LOGIN_USER.username : LOGIN_USER.customer.firstName}</h1>
                                     <div class="user__information">
                                         <p class="user__email">
                                             Email: ${LOGIN_USER.email}
                                         </p>
-                                        <p class="user__phone">Phone: ${not empty LOGIN_USER.customer.phoneNumber ? 'LOGIN_USER.customer.phoneNumber' : 'Please update your phone number'}</p>
+                                        <p class="user__phone">Phone: ...</p>
                                         <p class="user__address">
-                                            Address: ${not empty LOGIN_USER.customer.address ? 'LOGIN_USER.customer.address' : 'Please update your address'}
+                                            Address: ...
                                         </p>
                                     </div>
                                     <div class="user__button">

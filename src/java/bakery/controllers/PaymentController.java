@@ -7,6 +7,7 @@ package bakery.controllers;
 
 import bakery.dao.CartDAO;
 import bakery.dto.CartItemDTO;
+import bakery.dto.OrderDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -34,6 +35,8 @@ public class PaymentController extends HttpServlet {
 
             int customerId = (int) session.getAttribute("CUSTOMER_ID");
             String totalAmount = request.getParameter("totalAmount");
+            
+            String paymentMethod = request.getParameter("paymentMethod");
 
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
@@ -42,8 +45,16 @@ public class PaymentController extends HttpServlet {
 
             CartDAO cart = new CartDAO();
             boolean insertOrder = cart.insertOrder(customerId, Double.parseDouble(totalAmount));
+            
+            OrderDTO order = cart.getOrderId(customerId, Double.parseDouble(totalAmount));
+            int orderId = order.getOrderId();
+            
+            boolean updateOrder = cart.updateOrder(customerId, orderId, firstName, lastName, address, phone, Integer.parseInt(paymentMethod));
+            
             if (insertOrder) {
-                url = SUCCESS;
+                if (updateOrder) {
+                    url = SUCCESS;
+                }
             }
 
         } catch (Exception e) {

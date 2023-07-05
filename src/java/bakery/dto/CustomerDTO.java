@@ -13,18 +13,18 @@ public class CustomerDTO {
     private int customerId;
     private String firstName;
     private String lastName;
-    private String address;
-    private String phoneNumber;
+    private String fullName;
+    private String avatar;
 
     public CustomerDTO() {
     }
 
-    public CustomerDTO(int customerId, String firstName, String lastName, String address, String phoneNumber) {
+    public CustomerDTO(int customerId, String firstName, String lastName, String fullName, String avatar) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+        this.fullName = fullName;
+        this.avatar = avatar;
     }
 
     public int getCustomerId() {
@@ -51,26 +51,28 @@ public class CustomerDTO {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
     public String toString() {
-        return "CustomerDTO{" + "customerId=" + getCustomerId() + ", firstName=" + getFirstName() + ", lastName=" + getLastName() + ", address=" + getAddress() + ", phoneNumber=" + getPhoneNumber() + '}';
+        return "CustomerDTO{" + "customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", fullName=" + fullName + ", avatar=" + avatar + '}';
     }
+
+    
     
     
 }

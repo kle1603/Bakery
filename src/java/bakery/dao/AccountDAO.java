@@ -178,14 +178,12 @@ public class AccountDAO {
                     int customerId = rs.getInt("customer_id");
                     String firstName = rs.getString("first_name");
                     String lastName = rs.getString("last_name");
-                    String address = rs.getString("address");
-                    String phoneNumber = rs.getString("phone_number");
                     String email = rs.getString("email");
                     String roleName = rs.getString("role_name");
                     String roleId = rs.getString("role_id");
 
                     // Tạo đối tượng CustomerDTO từ thông tin đã lấy từ cơ sở dữ liệu
-                    CustomerDTO customer = new CustomerDTO(customerId, firstName, lastName, address, phoneNumber);
+                    CustomerDTO customer = new CustomerDTO(customerId, firstName, lastName, null, null);
 
                     // Tạo đối tượng RoleDTO từ roleName
                     RoleDTO role = new RoleDTO(roleId, roleName);

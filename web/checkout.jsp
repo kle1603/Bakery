@@ -133,7 +133,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                                     <p class="form-option">(optional)</p></label
                                 >
                                 <textarea
-                                    class="contact__form-textarea contact__form"
+                                    class="contact__form-textarea checkout-text__form"
                                     name="yourself"
                                     id="yourself"
                                     placeholder="Tell us about yourself"
@@ -143,6 +143,39 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                         </div>
 
                         <div class="checkout__amount">
+                            <h1 class="checkout__payment-heading">Payment</h1>
+                            <div class="checkout__payment">
+                                <div class="form-check">
+                                    <input
+                                        id="banking"
+                                        name="paymentMethod"
+                                        type="radio"
+                                        class="form-check-input"
+                                        checked=""
+                                        required=""
+                                        value="1"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="banking"
+                                        >Banking</label
+                                    >
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        id="cash"
+                                        name="paymentMethod"
+                                        type="radio"
+                                        class="form-check-input"
+                                        required=""
+                                        value="2"
+                                    />
+                                    <label class="form-check-label" for="cash"
+                                        >Cash</label
+                                    >
+                                </div>
+                            </div>
+
                             <h2 class="checkout__order">Your order</h2>
                             <div class="checkout__row checkout__row-1">
                                 <p class="checkout__row-price">
@@ -168,11 +201,21 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                             </div>
                             <div class="checkout__row checkout__row-3">
                                 <p class="checkout__total">Total</p>
-                                <p class="checkout__price">$${requestScope.TOTAL_AMOUNT}</p>
+                                <p class="checkout__price">
+                                    $${requestScope.TOTAL_AMOUNT}
+                                </p>
                             </div>
-                                                    
-                            <input type="hidden" name="action" value="Payment"/>
-                            <input type="hidden" name="totalAmount" value="${requestScope.TOTAL_AMOUNT}"/>
+
+                            <input
+                                type="hidden"
+                                name="action"
+                                value="Payment"
+                            />
+                            <input
+                                type="hidden"
+                                name="totalAmount"
+                                value="${requestScope.TOTAL_AMOUNT}"
+                            />
                             <button class="btn checkout__btn" type="submit">
                                 Place Order
                             </button>

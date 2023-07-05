@@ -48,6 +48,10 @@
         <servlet-name>PaymentController</servlet-name>
         <servlet-class>bakery.controllers.PaymentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderBillController</servlet-name>
+        <servlet-class>bakery.controllers.OrderBillController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>PaymentController</servlet-name>
         <url-pattern>/PaymentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderBillController</servlet-name>
+        <url-pattern>/OrderBillController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
