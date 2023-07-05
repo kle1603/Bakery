@@ -46,7 +46,7 @@ public class UpdateController extends HttpServlet {
                 List<CartItemDTO> cartItemList = cart.getItemsByCus(customerId);
                 List<CartItemDTO> cartItems = cart.getCartItems(customerId);
                 int totalItems = cartItems.size();
-                request.setAttribute("ITEM_LIST", cartItemList);
+                session.setAttribute("ITEM_LIST", cartItemList);
                 session.setAttribute("TOTAL_ITEMS", totalItems);
                 url = SUCCESS;
             } else {

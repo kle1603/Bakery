@@ -27,6 +27,7 @@ public class CartDAO {
 
     private static final String GET_CART = "{CALL GetCartItems(?)}";
     private static final String GET_ITEM = "{CALL GetCartItemByCustomerId(?)}";
+    private static final String INSERT_ORDER = "{CALL InsertOrderDetailsFromCart(?, ?)}";
     private static final String DELETE_ITEM = "DELETE FROM cart_item WHERE bread_id = ? AND cart_id = ?";
     private static final String UPDATE_ITEM = "UPDATE cart_item SET quantity = ? WHERE cart_id = ? AND bread_id = ?";
 
@@ -185,6 +186,34 @@ public class CartDAO {
                 ps.setInt(1, quantity);
                 ps.setInt(2, cartId);
                 ps.setInt(3, breadId);
+                check = ps.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return check;
+    }
+    
+    public boolean insertOrder(int customerId, double totalAmount) throws SQLException{
+        Connection c = null;
+        PreparedStatement ps = null;
+        boolean check = false;
+
+        try {
+            c = DBUtils.getConnection();
+
+            if (c != null) {
+                ps = c.prepareStatement(INSERT_ORDER);               
+                ps.setInt(1, customerId);
+                ps.setDouble(2, totalAmount);
                 check = ps.executeUpdate() > 0;
             }
         } catch (Exception e) {

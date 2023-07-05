@@ -180,7 +180,7 @@
     color: #566363;
 }
 
-.checkout__btn {
+.btn.checkout__btn {
     width: 100%;
     --height: 60px;
     border-radius: 0px;

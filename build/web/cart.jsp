@@ -43,7 +43,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                         <h1 class="cart__heading">Your Cart</h1>
 
                         <!-- Item 1 -->
-                        <c:forEach var="item" items="${requestScope.ITEM_LIST}">
+                        <c:forEach var="item" items="${sessionScope.ITEM_LIST}">
                             <c:set
                                 var="totalAmount"
                                 scope="page"
@@ -220,7 +220,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                         ${item}
                         <c:url var="checkout" value="MainController">
                             <c:param name="action" value="Checkout" />
-                            <c:param name="totalAmount" value="${formattedTotalAmount}" />                          
+                            <c:param name="totalAmount" value="${formattedTotalAmount}" />                                                  
                         </c:url>
                         <div class="cart__footer-left">
                             <a href="${checkout}" class="footer-checkout btn">

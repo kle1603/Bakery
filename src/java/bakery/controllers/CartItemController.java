@@ -37,7 +37,7 @@ public class CartItemController extends HttpServlet {
             CartDAO cart = new CartDAO();
             List<CartItemDTO> cartItemList = cart.getItemsByCus(customerId);
 
-            request.setAttribute("ITEM_LIST", cartItemList);
+            session.setAttribute("ITEM_LIST", cartItemList);
             
             url = SUCCESS;
 
