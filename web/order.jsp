@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ page
+contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,15 +22,21 @@
         <link rel="stylesheet" href="./assets/css/main.css" />
     </head>
     <body>
+        <c:if
+            test="${sessionScope.ROLE_ID == null || sessionScope.ROLE_ID ne 'US'}"
+        >
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>
+
         <!-- Header -->
-        <%-- Kiểm tra xem đã đăng nhập hay chưa --%>
+        <%-- Kiá»m tra xem ÄÃ£ ÄÄng nháº­p hay chÆ°a --%>
         <c:if test="${empty sessionScope.LOGIN_USER}">
-            <%-- Hiển thị header.jsp khi chưa đăng nhập --%>
+            <%-- Hiá»n thá» header.jsp khi chÆ°a ÄÄng nháº­p --%>
             <c:import url="./header.jsp" />
         </c:if>
 
         <c:if test="${not empty sessionScope.LOGIN_USER}">
-            <%-- Hiển thị headerLogin.jsp khi đã đăng nhập --%>
+            <%-- Hiá»n thá» headerLogin.jsp khi ÄÃ£ ÄÄng nháº­p --%>
             <c:import url="./headerLogin.jsp" />
         </c:if>
 
@@ -35,34 +44,40 @@
             <section class="cart">
                 <div class="container">
                     <div class="cart__inner">
-                        <h1 class="cart__heading">Your Order</h1>
+                        <h1 class="cart__heading">All Your Order</h1>
 
                         <!-- Item 1 -->
-                        <c:forEach var="item" items="${sessionScope.ITEM_LIST}">
-                            <form action="MainController" method="POST">
-                                <article class="cart__list">
-                                    <section class="cart__item">
-                                        <h2 class="cart__item-title">
-                                            Oder number
-                                        </h2>
-                                    </section>
-                                    <div class="cart__item-content">
-                                        ${ORDER_LIST}
-                                        <p class="order__text order__date">
-                                            Date:
-                                            <strong class="price">10/10</strong>
-                                        </p>
-                                        <p class="order__text order__items">
-                                            Items:
-                                            <strong class="price">10</strong>
-                                        </p>
-                                        <p class="order__text order__total">
-                                            Total:
-                                            <strong class="price">$100</strong>
-                                        </p>
-                                    </div>
-                                </article>
-                            </form>
+                        <c:forEach
+                            var="order"
+                            items="${sessionScope.ORDER_LIST}"
+                        >
+                            <article class="cart__list">
+                                <section class="cart__item">
+                                    <h2 class="cart__item-title">
+                                        Bill number A89CXY6${order.orderId}
+                                    </h2>
+                                </section>
+                                <div class="cart__item-content">
+                                    <p class="order__text order__date">
+                                        Date:
+                                        <strong class="price"
+                                            >${order.orderDate}</strong
+                                        >
+                                    </p>
+                                    <p class="order__text order__items">
+                                        Items:
+                                        <strong class="price"
+                                            >${order.totalProducts}</strong
+                                        >
+                                    </p>
+                                    <p class="order__text order__total">
+                                        Total:
+                                        <strong class="price"
+                                            >$${order.totalAmount}</strong
+                                        >
+                                    </p>
+                                </div>
+                            </article>
                         </c:forEach>
                     </div>
                 </div>

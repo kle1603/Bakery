@@ -58,6 +58,12 @@ public class MainController extends HttpServlet {
     
     private static final String ORDER_BILL = "Order";
     private static final String ORDER_BILL_CONTROLLER = "OrderBillController";
+    
+    private static final String ADMIN = "Admin";
+    private static final String ADMIN_CONTROLLER = "AdminController";
+    
+    private static final String ADMIN_CREATE = "AdminCreate";
+    private static final String ADMIN_CREATE_CONTROLLER = "AdminCreateController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -104,6 +110,12 @@ public class MainController extends HttpServlet {
                     break;
                 case ORDER_BILL: ;
                     url = ORDER_BILL_CONTROLLER;
+                    break;
+                case ADMIN: ;
+                    url = ADMIN_CONTROLLER;
+                    break;
+                case ADMIN_CREATE: ;
+                    url = ADMIN_CREATE_CONTROLLER;
                     break;
                 default:
                     url = WELCOME_PAGE;

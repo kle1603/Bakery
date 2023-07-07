@@ -5,6 +5,7 @@
  */
 package bakery.dto;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ public class OrderDTO {
     private int orderId;
     private CustomerDTO customer;
     private PaymentMethodDTO paymentMethod;
-    private Date orderDate;
+    private Timestamp orderDate;
     private double totalAmount;
     private String status;
     private String address;
@@ -27,7 +28,7 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
-    public OrderDTO(int orderId, CustomerDTO customer, PaymentMethodDTO paymentMethod, Date orderDate, double totalAmount, String status, String address, String phone, String firstName, String lastName, int totalProducts) {
+    public OrderDTO(int orderId, CustomerDTO customer, PaymentMethodDTO paymentMethod, Timestamp orderDate, double totalAmount, String status, String address, String phone, String firstName, String lastName, int totalProducts) {
         this.orderId = orderId;
         this.customer = customer;
         this.paymentMethod = paymentMethod;
@@ -65,11 +66,11 @@ public class OrderDTO {
         this.paymentMethod = paymentMethod;
     }
 
-    public Date getOrderDate() {
+    public Timestamp getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -133,8 +134,6 @@ public class OrderDTO {
     public String toString() {
         return "OrderDTO{" + "orderId=" + orderId + ", customer=" + customer + ", paymentMethod=" + paymentMethod + ", orderDate=" + orderDate + ", totalAmount=" + totalAmount + ", status=" + status + ", address=" + address + ", phone=" + phone + ", firstName=" + firstName + ", lastName=" + lastName + ", totalProducts=" + totalProducts + '}';
     }
-
-    
 
     
     

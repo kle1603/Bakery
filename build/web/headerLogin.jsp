@@ -105,7 +105,7 @@
                                     stroke-width="2"
                                     />
                                 </svg>
-                                <p class="header-icon__text">(0)</p>
+                                <p class="header-icon__text">(${sessionScope.ORDER_SIZE})</p>
                             </a>
                             <c:url var="cartItem" value="MainController">
                                 <c:param name="action" value="Cart" />

@@ -52,6 +52,14 @@
         <servlet-name>OrderBillController</servlet-name>
         <servlet-class>bakery.controllers.OrderBillController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>bakery.controllers.AdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminCreateController</servlet-name>
+        <servlet-class>bakery.controllers.AdminCreateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>OrderBillController</servlet-name>
         <url-pattern>/OrderBillController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/AdminController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminCreateController</servlet-name>
+        <url-pattern>/AdminCreateController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

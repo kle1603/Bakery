@@ -22,6 +22,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         <link rel="stylesheet" href="./assets/css/main.css" />
     </head>
     <body>
+        <c:if test="${sessionScope.ROLE_ID == null || sessionScope.ROLE_ID ne 'US'}">
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>
+        
         <!-- Header -->
         <%-- Kiá»m tra xem ÄÃ£ ÄÄng nháº­p hay chÆ°a --%>
         <c:if test="${empty sessionScope.LOGIN_USER}">

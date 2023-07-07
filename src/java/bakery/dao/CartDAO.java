@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -321,7 +322,7 @@ public class CartDAO {
 
             while (rs.next()) {
                 int orderId = rs.getInt("order_id");
-                java.sql.Date orderDate = rs.getDate("order_date");
+                Timestamp orderDate = rs.getTimestamp("order_date");
                 double totalAmount = rs.getDouble("total_amount");
                 int totalProducts = rs.getInt("total_products");
                 

@@ -136,10 +136,16 @@ public class AccountDAO {
                 
                 while(rs.next()){
                     int customerId = rs.getInt("customer_id");
+                    String roleId = rs.getString("role_id");
+                    
                     CustomerDTO customer = new CustomerDTO();
                     customer.setCustomerId(customerId);
                     
+                    RoleDTO role = new RoleDTO();
+                    role.setRoleId(roleId);
+                    
                     account.setCustomer(customer);
+                    account.setRole(role);
                     
                 }
                 
@@ -161,7 +167,7 @@ public class AccountDAO {
     }
 
     public AccountDTO checkLogin(String username, String password) throws SQLException {
-        AccountDTO account = new AccountDTO();
+        AccountDTO account = null;
         Connection c = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -187,6 +193,8 @@ public class AccountDAO {
 
                     // Tạo đối tượng RoleDTO từ roleName
                     RoleDTO role = new RoleDTO(roleId, roleName);
+                    
+                    account = new AccountDTO();
 
                     // Tạo đối tượng AccountDTO từ thông tin đã lấy từ cơ sở dữ liệu
                     account.setCustomer(customer);
@@ -272,6 +280,7 @@ public class AccountDAO {
                     double price = rs.getDouble("price");
                     String description = rs.getString("description");
                     String imageUrl = rs.getString("image_url");
+                    int quantity = rs.getInt("quantity");
 
                     BreadTypeDTO breadType = new BreadTypeDTO();
                     breadType.setBreadTypeId(breadTypeId);
@@ -284,6 +293,7 @@ public class AccountDAO {
                     bread.setPrice(price);
                     bread.setDescription(description);
                     bread.setImageUrl(imageUrl);
+                    bread.setQuantity(quantity);
 
                     productList.add(bread);
                 }

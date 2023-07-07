@@ -9,9 +9,18 @@
 
 .order__date {
     padding-right: 70px;
+    min-width: 250px;
 }
 
 .order__items,
 .order__total {
     padding-right: 50px;
+}
+
+.order__items {
+    min-width: 130px;
+}
+
+.order__total {
+    min-width: 180px;
 }

@@ -6,9 +6,12 @@
 package bakery.controllers;
 
 import bakery.dao.AccountDAO;
+import bakery.dao.AdminDAO;
 import bakery.dao.CartDAO;
 import bakery.dto.AccountDTO;
+import bakery.dto.BreadDTO;
 import bakery.dto.CartItemDTO;
+import bakery.dto.OrderDTO;
 import bakery.dto.RoleDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +29,12 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 
     private static final String LOGIN_PAGE = "login.jsp";
-    private static final String INDEX_PAGE = "index.jsp";
+    private static final String US_PAGE = "index.jsp";
+    private static final String AD_PAGE = "adminHome.jsp";
+
+    private static final String ERROR = "admin.jsp";
+    private static final String SUCCESS = "admin.jsp";
+    private static final int PRODUCTS_PER_PAGE = 6;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,23 +42,40 @@ public class LoginController extends HttpServlet {
         String url = LOGIN_PAGE;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         try {
             AccountDAO dao = new AccountDAO();
             AccountDTO accountUser = dao.checkLogin(username, password);
 
+            HttpSession session = request.getSession();
+
             if (accountUser == null) {
                 request.setAttribute("ERROR_LOGIN", true);
             } else {
-                HttpSession session = request.getSession();
-                int customerId = accountUser.getCustomer().getCustomerId();
-                CartDAO cart = new CartDAO();
-                List<CartItemDTO> cartItems = cart.getCartItems(customerId);
-                int totalItems = cartItems.size();
-                url = INDEX_PAGE;
-                session.setAttribute("LOGIN_USER", accountUser);
-                session.setAttribute("TOTAL_ITEMS", totalItems);
-                session.setAttribute("CUSTOMER_ID", customerId);
+                RoleDTO role = accountUser.getRole();
+                String roleId = role.getRoleId().trim();
+                if (roleId.equals("US")) {
+                    int customerId = accountUser.getCustomer().getCustomerId();
+
+                    CartDAO cart = new CartDAO();
+                    List<CartItemDTO> cartItems = cart.getCartItems(customerId);
+                    int totalItems = cartItems.size();
+
+                    List<OrderDTO> orderList = cart.getOrderList(customerId);
+                    int totalOrder = orderList.size();
+
+                    session.setAttribute("LOGIN_USER", accountUser);
+                    session.setAttribute("TOTAL_ITEMS", totalItems);
+                    session.setAttribute("CUSTOMER_ID", customerId);
+                    session.setAttribute("ORDER_SIZE", totalOrder);
+                    session.setAttribute("ROLE_ID", roleId);
+
+                    url = US_PAGE;
+                } else if (roleId.equals("AD")) {
+                    session.setAttribute("ROLE_ID", roleId);
+
+                    url = AD_PAGE;
+                }
             }
         } catch (Exception e) {
             log("error at LoginController: " + e.toString());

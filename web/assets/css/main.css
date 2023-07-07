@@ -10,3 +10,7 @@
 @import url(./user.css);
 @import url(./order.css);
 @import url(./checkout.css);
+@import url(./invoice.css);
+@import url(./admin.css);
+@import url(./adminHeader.css);
+@import url(./adminCreate.css);

@@ -10,6 +10,8 @@ import bakery.dao.CartDAO;
 import bakery.dto.AccountDTO;
 import bakery.dto.CartItemDTO;
 import bakery.dto.GoogleDTO;
+import bakery.dto.OrderDTO;
+import bakery.dto.RoleDTO;
 import bakery.utils.Google;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,6 +30,9 @@ public class GoogleController extends HttpServlet {
 
     private static final String SUCCESS = "index.jsp";
     private static final String ERROR = "login.jsp";
+    
+    private static final String US_PAGE = "index.jsp";
+    private static final String AD_PAGE = "adminHome.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,18 +53,33 @@ public class GoogleController extends HttpServlet {
             int customerId = accountUser.getCustomer().getCustomerId();
 
             if (loginSuccess) {
-                url = SUCCESS;
 
-                CartDAO cart = new CartDAO();
-                List<CartItemDTO> cartItems = cart.getCartItems(customerId);
-                int totalItems = cartItems.size();
-                
-                session.setAttribute("TOTAL_ITEMS", totalItems);
-                session.setAttribute("LOGIN_GG", gdto);
-                session.setAttribute("LOGIN_USER", accountUser);
-            } else {
-                request.setAttribute("errorMessage", "Đăng nhập không thành công.");
+                RoleDTO role = accountUser.getRole();
+                String roleId = role.getRoleId().trim();
+                if (roleId.equals("US")) {
+                    CartDAO cart = new CartDAO();
+                    List<CartItemDTO> cartItems = cart.getCartItems(customerId);
+                    int totalItems = cartItems.size();
+
+                    session.setAttribute("TOTAL_ITEMS", totalItems);
+                    session.setAttribute("LOGIN_GG", gdto);
+                    session.setAttribute("LOGIN_USER", accountUser);
+
+                    List<OrderDTO> orderList = cart.getOrderList(customerId);
+                    int totalOrder = orderList.size();
+
+                    session.setAttribute("CUSTOMER_ID", customerId);
+                    session.setAttribute("ORDER_SIZE", totalOrder);
+                    session.setAttribute("ROLE_ID", roleId);
+
+                    url = US_PAGE;
+                } else if (roleId.equals("AD")) {
+                    session.setAttribute("ROLE_ID", roleId);
+
+                    url = AD_PAGE;
+                }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

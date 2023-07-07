@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class PaymentController extends HttpServlet {
 
     private static final String ERROR = "checkout.jsp";
-    private static final String SUCCESS = "payment.jsp";
+    private static final String SUCCESS = "invoice.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class PaymentController extends HttpServlet {
 
             int customerId = (int) session.getAttribute("CUSTOMER_ID");
             String totalAmount = request.getParameter("totalAmount");
-            
+
             String paymentMethod = request.getParameter("paymentMethod");
 
             String firstName = request.getParameter("firstName");
@@ -45,14 +45,22 @@ public class PaymentController extends HttpServlet {
 
             CartDAO cart = new CartDAO();
             boolean insertOrder = cart.insertOrder(customerId, Double.parseDouble(totalAmount));
-            
+
             OrderDTO order = cart.getOrderId(customerId, Double.parseDouble(totalAmount));
             int orderId = order.getOrderId();
-            
+
             boolean updateOrder = cart.updateOrder(customerId, orderId, firstName, lastName, address, phone, Integer.parseInt(paymentMethod));
-            
+
             if (insertOrder) {
                 if (updateOrder) {
+                    List<CartItemDTO> cartItems = cart.getCartItems(customerId);
+                    int totalItems = cartItems.size();
+                    
+                    List<OrderDTO> orderList = cart.getOrderList(customerId);
+                    int totalOrder = orderList.size();
+                    
+                    session.setAttribute("TOTAL_ITEMS", totalItems);
+                    session.setAttribute("ORDER_SIZE", totalOrder);
                     url = SUCCESS;
                 }
             }

@@ -1,0 +1,39 @@
+.admin__header-navbar {
+    background: var(--primary-color);
+    padding: 20px 0;
+}
+
+.admin__navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin__navbar-left {
+    display: flex;
+}
+
+.admin__navbar-item {
+    padding: 20px 40px;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1.12;
+}
+
+/* Admin Home */
+.admin-home {
+    height: calc(100vh - 102px);
+    background: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-home__heading {
+    padding: 20px;
+    font-weight: 600;
+    font-size: 5rem;
+    line-height: 1.08;
+    color: #131717;
+    text-align: center;
+}

@@ -22,6 +22,10 @@
             <link rel="stylesheet" href="./assets/css/main.css" />
         </head>
         <body>
+            <c:if test="${sessionScope.ROLE_ID == null || sessionScope.ROLE_ID ne 'US'}">
+                <c:redirect url="login.jsp"></c:redirect>
+            </c:if>
+
             <%-- Kiểm tra xem đã đăng nhập hay chưa --%>
             <c:if test="${empty sessionScope.LOGIN_USER}">
                 <%-- Hiển thị header.jsp khi chưa đăng nhập --%>
@@ -67,7 +71,7 @@
                                             class="ava-image"
                                             />
                                     </div>
-                                    
+
                                     <h1 class="user__title">${not empty LOGIN_USER.username ? LOGIN_USER.username : LOGIN_USER.customer.firstName}</h1>
                                     <div class="user__information">
                                         <p class="user__email">

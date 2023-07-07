@@ -8,6 +8,7 @@ package bakery.controllers;
 import bakery.dao.AccountDAO;
 import bakery.dao.CartDAO;
 import bakery.dto.BreadDTO;
+import bakery.dto.CartItemDTO;
 import bakery.dto.OrderDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +27,7 @@ public class OrderBillController extends HttpServlet {
 
     private static final String ERROR = "index.jsp";
     private static final String SUCCESS = "order.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,15 +35,19 @@ public class OrderBillController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             int customerId = (int) session.getAttribute("CUSTOMER_ID");
-            
+
             CartDAO dao = new CartDAO();
+            
             List<OrderDTO> orderList = dao.getOrderList(customerId);
             
-            if (orderList != null) {
-                request.setAttribute("ORDER_LIST", orderList);
+
+            if (!orderList.isEmpty()) {
+                session.setAttribute("ORDER_LIST", orderList);
+                
+                
                 url = SUCCESS;
             }
-            
+
         } catch (Exception e) {
             log("Error at ProductController: " + e.toString());
         } finally {
