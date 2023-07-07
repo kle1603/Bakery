@@ -167,16 +167,13 @@ CREATE PROCEDURE GetCustomerByGoogleID
     @google_id NVARCHAR(50)
 AS
 BEGIN
-    SELECT *
-    FROM customer
-    WHERE customer_id = (
-        SELECT customer_id
-        FROM account
-        WHERE google_id = @google_id
-    );
+    SELECT c.*, a.username, a.password, a.email, a.role_id, a.facebook_id, a.google_id
+    FROM customer c
+    JOIN account a ON c.customer_id = a.customer_id
+    WHERE a.google_id = @google_id;
 END;
 
-EXEC GetCustomerByGoogleID 'your_google_id';
+EXEC GetCustomerByGoogleID '101471301006291907036';
 
 
 --Select product
@@ -189,18 +186,6 @@ BEGIN
     FROM bread AS b
     INNER JOIN bread_type AS bt ON b.bread_type_id = bt.bread_type_id
     INNER JOIN image AS i ON b.bread_id = i.bread_id;
-END;
-
-
---Get Total
-GO
-CREATE PROCEDURE GetTotalProducts
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    SELECT COUNT(*) AS TotalProducts
-    FROM bread;
 END;
 
 
@@ -492,23 +477,30 @@ BEGIN
         RETURN;
     END
 
-    -- Kiểm tra xem breadId có tồn tại trong các bảng khác hay không
+    -- Kiểm tra xem breadId có tồn tại trong bảng order_detail hay không
     IF EXISTS (SELECT 1 FROM order_detail WHERE bread_id = @breadId)
     BEGIN
         SET @isDeleted = 0; -- Nếu tồn tại thì không xóa
+        RETURN;
     END
-    ELSE
+
+    -- Kiểm tra xem breadId có tồn tại trong bảng cart_item hay không
+    IF EXISTS (SELECT 1 FROM cart_item WHERE bread_id = @breadId)
     BEGIN
-        -- Xóa dữ liệu trong bảng image
-        DELETE FROM image WHERE bread_id = @breadId;
-
-        -- Xóa dữ liệu trong bảng bread
-        DELETE FROM bread WHERE bread_id = @breadId;
-
-        SET @isDeleted = 1; -- Đánh dấu xóa thành công
+        SET @isDeleted = 0; -- Nếu tồn tại thì không xóa
+        RETURN;
     END
+    
+    -- Xóa dữ liệu trong bảng image
+    DELETE FROM image WHERE bread_id = @breadId;
+
+    -- Xóa dữ liệu trong bảng bread
+    DELETE FROM bread WHERE bread_id = @breadId;
+
+    SET @isDeleted = 1; -- Đánh dấu xóa thành công
 END
 GO
+
 
 
 
